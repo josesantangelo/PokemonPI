@@ -120,4 +120,4 @@ pokemons.delete("/", (req, res, next) => {
   res.send("soy el delete de /pokemons");
 });
 
-module.exports = pokemons;
+// module.exports = pokemons;

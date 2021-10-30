@@ -10,6 +10,16 @@ const getPokemon = async (path, creator, tag = "") => {
   }
 };
 
+// const getPokemons = (path, creator, tag = "") => {
+//   try {
+//     response = await axios.get(`${path}/${tag}`);
+//     data = await response.data;
+//     return new creator(data);
+//   } catch (error) {
+//     return null;
+//   }
+// };
+
 module.exports = {
   getPokemon,
 };

@@ -3,14 +3,15 @@ import axios from "axios";
 // import { search } from "../../components/search/Search.jsx";
 export function getPokemons() {
   return async function (dispatch) {
-    let pokemons = await axios.get("http://localhost:3001/pokemons/");
+    let pokemons = await axios.get(
+      "http://localhost:3001/pokemons?page=2&limit=12"
+    );
     try {
       dispatch({
         type: GET_POKEMONS,
         payload: pokemons,
       });
     } catch (error) {
-      //se puede despachar un error, averiguar
       console.log(error);
     }
   };
