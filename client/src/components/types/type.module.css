@@ -1,0 +1,14 @@
+.type {
+  box-shadow: black;
+  padding: 2px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 10px;
+  font-size: 20px;
+  font-family: "PokemonGb-RAeo";
+}
+
+.type:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: all ease 0.5s;
+}

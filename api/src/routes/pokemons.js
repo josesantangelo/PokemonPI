@@ -10,6 +10,8 @@ pokemons.get("/", async (req, res, next) => {
   const { name } = req.query;
   const page = parseInt(req.query.page);
   const limit = parseInt(req.query.limit);
+  const { type1 } = req.query;
+  const { type2 } = req.query;
   let pokemon;
 
   if (name) {
@@ -38,7 +40,7 @@ pokemons.get("/", async (req, res, next) => {
     let finishIndex = page * limit;
     let startIndex = finishIndex - limit + 1;
     //saque limite && < 40
-    for (let i = startIndex; i <= finishIndex && i < 40; i++) {
+    for (let i = startIndex; i <= finishIndex && i <= 10; i++) {
       if (i === 0 || (i > 898 && i < 10002) || i > 10220) continue;
       urlArr = [...urlArr, axios.get(`${url}/${i}`)];
     }
@@ -52,20 +54,30 @@ pokemons.get("/", async (req, res, next) => {
         });
       })
     );
-
+    // if (type1 && type2) {
+    //   console.log()
+    //   totalPokemonApi = totalPokemonApi.filter((element) =>
+    //     element.types.includes(type1 || type2)
+    //   );
+    // }
+    // if (type1) {
+    //   totalPokemonApi = totalPokemonApi.filter((element) =>
+    //     element.types.includes(type1)
+    //   );
+    // }
     const totalPokemonDB = await Pokemon.findAll();
 
     const totalPokemon = totalPokemonApi.concat(totalPokemonDB);
     if (page < 40) {
       res.send(totalPokemonApi);
     }
-    if (totalPokemonDB.length < 8 && page > 4) {
-      res.send([]);
-    }
-    if (page > 4) {
-      res.send(totalPokemonDB.slice(8 + 12 * (page - 5)));
-    }
-    res.send(totalPokemon.slice(0, 12));
+    // if (totalPokemonDB.length < 8 && page > 4) {
+    //   res.send([]);
+    // }
+    // if (page > 4) {
+    //   res.send(totalPokemonDB.slice(8 + 12 * (page - 5)));
+    // }
+    // res.send(totalPokemon.slice(0, 12));
   }
 });
 
@@ -103,6 +115,7 @@ pokemons.post("/", async (req, res, next) => {
       height,
       weight,
     });
+
     //YA LINKEA LOS POKEMONS CON LOS TIPOS. VER QUE MAS FALTA
     await newPoke.addTypes(types);
 

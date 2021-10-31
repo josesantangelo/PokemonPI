@@ -4,6 +4,16 @@ const { Type } = require("../db.js");
 const types = Router();
 
 types.get("/", async (req, res, next) => {
+  const totalTypes = await Type.findAll({
+    attributes: {
+      exclude: ["id", "id_api"],
+    },
+  });
+
+  res.json(totalTypes);
+});
+
+types.post("/", async (req, res, next) => {
   const PokemonTypes = axios.get("https://pokeapi.co/api/v2/type");
 
   let dataPokemonTypes = (await PokemonTypes).data.results;
@@ -30,10 +40,6 @@ types.get("/", async (req, res, next) => {
   });
   // console.log(TypesCollection);
   res.send();
-});
-
-types.post("/", (req, res, next) => {
-  res.send("soy el post de /types");
 });
 
 types.put("/", (req, res, next) => {

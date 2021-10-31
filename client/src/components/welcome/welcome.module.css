@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "font_welcome";
+  src: url("../../utils/fonts/font_welcome.ttf") format("truetype");
+}
+.landing {
+  display: flex;
+  align-items: flex-end;
+  justify-items: flex-end;
+  justify-content: center;
+  background-image: url("../../utils/img/bg_welcome.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.landing a {
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
+  margin: 0px 0px 100px 0px;
+}
+
+.landing a:hover {
+  font-weight: bolder;
+}

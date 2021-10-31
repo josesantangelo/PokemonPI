@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "PokemonGb-RAeo";
+  src: url("../../utils/fonts/font_gba.ttf") format("truetype");
+}
+
+.input::placeholder {
+  font-family: "PokemonGb-RAeo";
+  font-size: 9px;
+  color: black;
+}
+.formSearch {
+  display: flex;
+}
+.buttonSearch {
+  display: flex;
+  background-color: transparent;
+  border: none;
+  size: 10px;
+  cursor: pointer;
+}
+.buttonSearch img {
+  width: 25px;
+  height: 25px;
+}

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getExactPokemon } from "../../store/actions/actions.js";
+import s from "./search.module.css";
+import image from "../../utils/img/pokebola.svg";
 //tiene que tomar el input, traer la ruta ...api.../input, y devolver el resultado a pokemons.
 
 export default function Search() {
@@ -8,9 +10,9 @@ export default function Search() {
   const dispatch = useDispatch();
   let onSubmit = (e) => {
     e.preventDefault();
-    if (search !== "") {
-      dispatch(getExactPokemon(search));
-    }
+
+    dispatch(getExactPokemon(search));
+
     console.log(search);
   };
 
@@ -20,13 +22,16 @@ export default function Search() {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={s.formSearch}>
         <input
-          placeholder="Ingresa tu Pokemon..."
+          className={s.input}
+          placeholder="Ingresá tu Pokemon"
           onChange={onChange}
           autoFocus
         />
-        <input type="submit" value="O" />
+        <button type="submit" value="O" className={s.buttonSearch}>
+          <img src={image} alt="O" />
+        </button>
       </form>
     </div>
   );

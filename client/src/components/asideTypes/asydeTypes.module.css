@@ -1,0 +1,13 @@
+.list {
+  list-style-type: none;
+}
+
+.item {
+  text-decoration: none;
+}
+
+.container ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
