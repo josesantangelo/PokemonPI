@@ -48,3 +48,32 @@
     transform: rotate(360deg);
   }
 }
+
+/* POR QUE ACA Y PORQUE SI O SI CON EL IMPORTANT???  */
+.grass:hover {
+  background-color: green !important;
+}
+
+.fire:hover {
+  background-color: rgb(212, 39, 39) !important;
+}
+
+.water:hover {
+  background-color: blue !important;
+}
+
+.bug:hover {
+  background-color: rgb(77, 199, 77) !important;
+}
+
+.electric:hover {
+  background-color: yellow !important;
+}
+
+.ground:hover {
+  background-color: rgb(165, 101, 42) !important;
+}
+
+.poison:hover {
+  background-color: rgb(161, 53, 161) !important;
+}

@@ -1,4 +1,4 @@
-.type {
+#type {
   box-shadow: black;
   padding: 2px;
   color: black;
@@ -8,7 +8,7 @@
   font-family: "PokemonGb-RAeo";
 }
 
-.type:hover {
+#type:hover {
   background-color: rgba(0, 0, 0, 0.1);
   transition: all ease 0.5s;
 }

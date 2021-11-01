@@ -1,19 +1,18 @@
-.card {
+#card {
   border: 1px solid black;
   margin: 2px 10px;
-  background-color: rgb(218, 205, 188);
+  background-color: rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 0px 30px;
 }
 
-.card img {
-  width: 300px;
-  height: 300px;
+#card img {
+  width: 200px;
+  height: 200px;
 }
 
 /* HOVERS */
 
-.card:hover {
-  background-color: rgb(197, 185, 169);
+#card:hover {
   transition: all ease 0.5s;
 }

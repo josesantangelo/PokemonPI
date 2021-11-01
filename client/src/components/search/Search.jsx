@@ -12,12 +12,13 @@ export default function Search() {
     e.preventDefault();
 
     dispatch(getExactPokemon(search));
+    setSearch("");
 
     console.log(search);
   };
 
   let onChange = (e) => {
-    setSearch(e.target.value);
+    setSearch(e.target.value.toLowerCase());
   };
 
   return (

@@ -40,7 +40,7 @@ pokemons.get("/", async (req, res, next) => {
     let finishIndex = page * limit;
     let startIndex = finishIndex - limit + 1;
     //saque limite && < 40
-    for (let i = startIndex; i <= finishIndex && i <= 10; i++) {
+    for (let i = startIndex; i <= finishIndex && i <= 40; i++) {
       if (i === 0 || (i > 898 && i < 10002) || i > 10220) continue;
       urlArr = [...urlArr, axios.get(`${url}/${i}`)];
     }

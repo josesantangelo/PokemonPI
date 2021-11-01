@@ -16,7 +16,6 @@ export function getPokemons() {
         type: GET_POKEMONS,
         payload: pokemons,
       });
-      console.log("entraron");
     } catch (error) {
       console.log(error);
     }
