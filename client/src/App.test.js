@@ -1,8 +1,11 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import Pokemons from "./components/pokemons/Pokemons";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+describe("Pokemons", () => {
+  it("must display a title", () => {
+    render(<App />);
+    expect(screen.queryByText(/soy el title/i)).toBeInTheDocument();
+  });
 });
