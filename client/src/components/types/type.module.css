@@ -6,6 +6,8 @@
   border-radius: 10px;
   font-size: 20px;
   font-family: "PokemonGb-RAeo";
+  background-color: transparent;
+  margin: 2px 0px;
 }
 
 #type:hover {

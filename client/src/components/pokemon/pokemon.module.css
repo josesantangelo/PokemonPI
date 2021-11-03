@@ -15,4 +15,5 @@
 
 #card:hover {
   transition: all ease 0.5s;
+  cursor: pointer;
 }

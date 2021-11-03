@@ -1,3 +1,4 @@
+const { Axios, default: axios } = require("axios");
 //                       _oo0oo_
 //                      o8888888o
 //                      88" . "88
@@ -18,11 +19,51 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
-const { conn } = require("./src/db.js");
+const { conn, Type } = require("./src/db.js");
 
+const addTypes = async () => {
+  try {
+    const PokemonTypes = await axios.get("https://pokeapi.co/api/v2/type");
+    const dataPokemonTypes = PokemonTypes.data.results;
+    dataPokemonTypes.map((element) => {
+      Type.create({ name: element.name });
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   server.listen(3001, () => {
+    addTypes();
     console.log("%is listening at 3001"); // eslint-disable-line no-console
   });
 });
+// types.post("/", async (req, res, next) => {
+//   const PokemonTypes = axios.get("https://pokeapi.co/api/v2/type");
+
+//   let dataPokemonTypes = (await PokemonTypes).data.results;
+
+//   let urlTypes = dataPokemonTypes.map((element) => element.url);
+
+//   let TypesCollection = [];
+
+//   TypesCollection = urlTypes.map(async (element) => {
+//     let dataUrl = await axios.get(element);
+//     // console.log(dataUrl.data.id);
+//     let idUrl = await dataUrl.data.id;
+//     let nameUrl = await dataUrl.data.name;
+//     try {
+//       Type.findOrCreate({
+//         where: {
+//           name: nameUrl,
+//           id_api: idUrl,
+//         },
+//       });
+//     } catch (error) {
+//       next(error);
+//     }
+//   });
+//   // console.log(TypesCollection);
+//   res.send();
+// });

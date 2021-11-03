@@ -10,9 +10,10 @@ export default function Search() {
   const dispatch = useDispatch();
   let onSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(getExactPokemon(search));
-    setSearch("");
+    if (search !== "") {
+      dispatch(getExactPokemon(search));
+      setSearch("");
+    }
 
     console.log(search);
   };

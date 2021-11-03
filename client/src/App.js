@@ -7,9 +7,12 @@ import Paginado from "./components/paginado/Paginado";
 import Welcome from "./components/welcome/Welcome";
 import { Route } from "react-router";
 import BodyContainer from "./components/bodyContainer/BodyContainer";
-const changePage = (page) => {
-  console.log(page);
-};
+import Form from "./components/form/Form";
+import Header from "./components/header/Header";
+
+// const changePage = (page) => {
+//   console.log(page);
+// };
 function App() {
   return (
     <div className="App">
@@ -18,8 +21,12 @@ function App() {
       </Route>
       <Route exact path="/home">
         <Navbar />
-        <Paginado changePage={changePage} />
+        <Header />
+        {/* <Paginado /> */}
         <BodyContainer />
+      </Route>
+      <Route exact path="/form">
+        {/* <Form /> */}
       </Route>
     </div>
   );

@@ -1,4 +1,5 @@
 const { Axios, default: axios } = require("../../../client/node_modules/axios");
+const { Pokemon } = require("../db.js");
 
 const getPokemon = async (path, creator, tag = "") => {
   try {
@@ -9,16 +10,6 @@ const getPokemon = async (path, creator, tag = "") => {
     return null;
   }
 };
-
-// const getPokemons = (path, creator, tag = "") => {
-//   try {
-//     response = await axios.get(`${path}/${tag}`);
-//     data = await response.data;
-//     return new creator(data);
-//   } catch (error) {
-//     return null;
-//   }
-// };
 
 module.exports = {
   getPokemon,

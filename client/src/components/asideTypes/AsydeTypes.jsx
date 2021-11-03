@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getTypes } from "../../store/actions/actions";
 import Type from "../types/Type";
-// import s from "./asydeTypes.module.css";
+import s from "./asydeTypes.module.css";
 
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
@@ -10,10 +10,9 @@ export default function Pokemons() {
 
   useEffect(() => {
     dispatch(getTypes());
-    console.log("types: " + types.data);
   }, []);
   return (
-    <div className="container">
+    <div className={s.container}>
       {types.map((element) => {
         return <Type name={element.name} key={element.name} />;
       })}

@@ -1,104 +1,105 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPokemons, setPages } from "../../store/actions/actions";
+import {
+  filterPokemons,
+  getPokemons,
+  setPages,
+  setSelectedPage,
+} from "../../store/actions/actions";
 import Pokemon from "../pokemon/Pokemon.jsx";
+import Paginado from "../paginado/Paginado";
+
 import s from "./pokemons.module.css";
 
 export default function Pokemons() {
+  //STATES
+  const [loading, setLoading] = useState(false);
   let pokemons = useSelector((state) => state.pokemons);
   let exactPokemon = useSelector((state) => state.pokemon);
-  // let pages = useSelector((state) => state.pages);
+  let pages = useSelector((state) => state.pages);
+  let selectedPage = useSelector((state) => state.selectedPage);
+  let filteredPokemons = useSelector((state) => state.filteredPokemons);
+  //______________________________________________________________
+
+  //USEEFFECT, TRAIGO POKEMONS Y GENERO LA CANTIDAD DE PAGINAS SEGUN CUANTOS LLEGUEN
   let dispatch = useDispatch();
-  // let flag = false;
-  // console.log("flag:" + flag);
-  // let setFlag = () => {
-  //   return (flag = true);
-  // };
   useEffect(() => {
+    // setLoading(true);
+    // console.log("load " + loading);
+    dispatch(setSelectedPage(1));
     dispatch(getPokemons());
-    // setFlag();
-    // console.log("flag:" + flag);
+    // dispatch(filterPokemons([]));
   }, []);
 
-  if (pokemons.length) {
-    console.log(pokemons);
+  // useEffect(() => {
+  //   setLoading(false);
+  //   console.log("load " + loading);
+  // }, [pokemons, loading]);
+  function calcularMax() {
+    if (filteredPokemons.length) {
+      return Math.ceil(filteredPokemons.length / 12);
+    } else {
+      return Math.ceil(pokemons.length / 12);
+    }
   }
-  ///////////////////////////////////////////////////////////////////
-  //PROTO FILTRADO POR TIPO
-  // if (pokemons.length) {
-  //   let filtrados = [];
-  //   const findByType = (type1, type2) => {
-  //     if (!type2) {
-  //       let filtered = pokemons.filter((element) =>
-  //         element.types.includes(type1)
-  //       );
-  //       filtrados = [...filtrados, filtered];
-  //     }
-
-  //     // || >> mas abarcativo     && >> mas especifico
-  //     let filtered = pokemons.filter(
-  //       (element) =>
-  //         element.types.includes(type1) || element.types.includes(type2)
-  //     );
-  //     filtrados = [...filtrados, filtered];
-  //   };
-  //   findByType("fire", "water");
-  //   console.log(filtrados);
-  // }
-  ///////////////////////////////////////////////////////////////////////
-  //PROTO ORDENAMIENTO POR NOMBRE
-  // if (pokemons.length) {
-  //   const alphabeticOrder = (order) => {
-  //     //let ordenados = pokemons y trabajo sobre ordenados ???
-  //     if (order === "a") {
-  //       pokemons.sort((a, b) => a.name.localeCompare(b.name));
-  //     }
-  //     if (order === "z") {
-  //       pokemons.sort((a, b) => b.name.localeCompare(a.name));
-  //     }
-  //     return pokemons;
-  //   };
-  //   alphabeticOrder("a");
-  //   console.log(pokemons);
-  // }
-
-  let max = Math.ceil(pokemons.length / 12);
+  let max = calcularMax();
   //Adentro o afuera de useEffect funciona igual, pero afuera duplica los resultados
   useEffect(() => {
     dispatch(setPages(max));
-  }, [pokemons]);
+  }, []);
 
-  // let onClick = (e) => {
-  //   e.preventDefault();
-  //   console.log(exactPokemon);
-  //   dispatch(getExactPokemon());
-  //   dispatch(getPokemons());
-  //   console.log(exactPokemon);
-  // };
+  //_______________________________________________________________________________
 
+  //DETERMINO LA CANTIDAD DE POKEMONS POR PAGINA, UTILIZANDO EL STATE POKEMONS Y SELECTED PAGE PARA CALCULARLO
+  let limit = 12;
+  let show = pokemons.slice(selectedPage * limit - limit, selectedPage * limit);
+  // console.log("show:", show);
+  // console.log("selected", selectedPage);
+
+  //__________________________________________________________________________________
   return (
-    <div className={s.cards}>
-      {exactPokemon && (
-        <Pokemon
-          name={exactPokemon.name}
-          img={exactPokemon.img}
-          types={exactPokemon.types}
-          id={exactPokemon.id}
-        ></Pokemon>
-      )}
-
-      {!exactPokemon &&
-        pokemons.map((element) => {
-          return (
+    <>
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <div className={s.cards}>
+          {exactPokemon && (
             <Pokemon
-              name={element.name}
-              types={element.types}
-              key={element.id}
-              id={element.id}
-              img={element.img}
+              name={exactPokemon.name}
+              img={exactPokemon.img}
+              types={exactPokemon.types}
+              id={exactPokemon.id}
             ></Pokemon>
-          );
-        })}
-    </div>
+          )}
+
+          {!exactPokemon &&
+            !filteredPokemons.length &&
+            show.map((element) => {
+              return (
+                <Pokemon
+                  name={element.name}
+                  types={element.types}
+                  key={element.id}
+                  id={element.id}
+                  img={element.img}
+                ></Pokemon>
+              );
+            })}
+
+          {filteredPokemons &&
+            filteredPokemons.map((element) => {
+              return (
+                <Pokemon
+                  name={element.name}
+                  types={element.types}
+                  key={element.id}
+                  id={element.id}
+                  img={element.img}
+                ></Pokemon>
+              );
+            })}
+        </div>
+      )}
+    </>
   );
 }

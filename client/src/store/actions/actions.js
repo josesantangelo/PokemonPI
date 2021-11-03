@@ -3,6 +3,8 @@ import {
   GET_EXACTPOKEMON,
   GET_TYPES,
   SET_PAGES,
+  SET_SELECTEDPAGE,
+  FILTER_POKEMON,
 } from "./action_types.js";
 import axios from "axios";
 // import { search } from "../../components/search/Search.jsx";
@@ -24,15 +26,13 @@ export function getPokemons() {
 
 export function getTypes() {
   return async function (dispatch) {
-    await axios.post("http://localhost:3001/types");
+    // await axios.post("http://localhost:3001/types");
     let types = await axios.get("http://localhost:3001/types");
     try {
       dispatch({
         type: GET_TYPES,
         payload: types,
       });
-      console.log("entraron!");
-      console.log(types.data);
     } catch (error) {
       console.log(error);
     }
@@ -41,18 +41,22 @@ export function getTypes() {
 
 export function getExactPokemon(value) {
   return async function (dispatch) {
+    if (!value) {
+      dispatch({
+        type: GET_EXACTPOKEMON,
+        payload: value,
+      });
+    }
     try {
       let exactPokemons = await axios.get(
         `http://localhost:3001/pokemons?name=${value}`
       );
 
-      console.log(exactPokemons);
       dispatch({
         type: GET_EXACTPOKEMON,
         payload: exactPokemons,
       });
     } catch (error) {
-      console.log("error del front!");
       dispatch({
         type: GET_EXACTPOKEMON,
         payload: {
@@ -68,6 +72,15 @@ export function getExactPokemon(value) {
   };
 }
 
+export function filterPokemons(value) {
+  return function (dispatch) {
+    dispatch({
+      type: FILTER_POKEMON,
+      payload: value,
+    });
+  };
+}
+
 export function setPages(value) {
   return function (dispatch) {
     let arr = [];
@@ -77,6 +90,15 @@ export function setPages(value) {
     dispatch({
       type: SET_PAGES,
       payload: arr,
+    });
+  };
+}
+
+export function setSelectedPage(value) {
+  return function (dispatch) {
+    dispatch({
+      type: SET_SELECTEDPAGE,
+      payload: value,
     });
   };
 }

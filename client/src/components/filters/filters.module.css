@@ -1,0 +1,9 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  margin-right: 10px;
+  margin-left: 10px;
+}
