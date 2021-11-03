@@ -13,7 +13,7 @@ import s from "./pokemons.module.css";
 
 export default function Pokemons() {
   //STATES
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState();
   let pokemons = useSelector((state) => state.pokemons);
   let exactPokemon = useSelector((state) => state.pokemon);
   let pages = useSelector((state) => state.pages);
@@ -28,6 +28,7 @@ export default function Pokemons() {
     // console.log("load " + loading);
     dispatch(setSelectedPage(1));
     dispatch(getPokemons());
+
     // dispatch(filterPokemons([]));
   }, []);
 
@@ -57,13 +58,17 @@ export default function Pokemons() {
   let show = pokemons.slice(selectedPage * limit - limit, selectedPage * limit);
   // console.log("show:", show);
   // console.log("selected", selectedPage);
-
+  let load = "loading...";
   //__________________________________________________________________________________
   return (
     <>
-      {loading ? (
-        <p>loading...</p>
-      ) : (
+      {!show && (
+        <h1>
+          AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        </h1>
+      )}
+
+      {show && (
         <div className={s.cards}>
           {exactPokemon && (
             <Pokemon
