@@ -7,6 +7,7 @@ export default function Paginado() {
   const changePage = (page) => {
     dispatch(setSelectedPage(page));
   };
+  console.log(pages);
   return (
     <div>
       {pages.map((element) => {

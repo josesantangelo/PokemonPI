@@ -37,8 +37,10 @@ export default function Pokemons() {
   // }, [pokemons, loading]);
   function calcularMax() {
     if (filteredPokemons.length) {
+      console.log("page con filter");
       return Math.ceil(filteredPokemons.length / 12);
     } else {
+      console.log("page sin filter");
       return Math.ceil(pokemons.length / 12);
     }
   }
@@ -46,7 +48,7 @@ export default function Pokemons() {
   //Adentro o afuera de useEffect funciona igual, pero afuera duplica los resultados
   useEffect(() => {
     dispatch(setPages(max));
-  }, []);
+  }, [dispatch, max]);
 
   //_______________________________________________________________________________
 
