@@ -1,3 +1,5 @@
+//ORDER FUNCTIONS
+
 export const alphabeticOrder = (arr, order, cb) => {
   //let ordenados = pokemons y trabajo sobre ordenados ???
   if (order === "a") {
@@ -23,3 +25,20 @@ export function sorterForty(a, b) {
     return -1;
   }
 }
+
+//__________________________________________________________________
+
+//VALIDATION FUNCTIONS (FORM)
+
+// export const validatePokemon = (arr, set, state, value) => {
+//   if (arr.includes(value.toLowerCase())) {
+//     set({
+//       ...state,
+//       name: `${value} ya existe! Probaste Super${value}?`,
+//     });
+//     console.log(state.name);
+//   } else {
+//     set({ ...state, name: "" });
+//   }
+//   set(value);
+// };

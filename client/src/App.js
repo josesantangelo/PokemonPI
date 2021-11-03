@@ -10,9 +10,6 @@ import BodyContainer from "./components/bodyContainer/BodyContainer";
 import Form from "./components/form/Form";
 import Header from "./components/header/Header";
 
-// const changePage = (page) => {
-//   console.log(page);
-// };
 function App() {
   return (
     <div className="App">
@@ -26,7 +23,7 @@ function App() {
         <BodyContainer />
       </Route>
       <Route exact path="/form">
-        {/* <Form /> */}
+        <Form />
       </Route>
     </div>
   );
