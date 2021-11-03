@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { filterPokemons, getExactPokemon } from "../../store/actions/actions";
+import { filterPokemons } from "../../store/actions/actions";
 import s from "./filters.module.css";
 import {
   alphabeticOrder,
@@ -9,16 +9,15 @@ import {
 export default function Filters() {
   const pokemons = useSelector((state) => state.pokemons);
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
-  const types = useSelector((state) => state.types);
+
   console.log("pokemons", pokemons);
   console.log("filter", filteredPokemons);
-  // console.log("types", types);
+
   let dispatch = useDispatch();
   //PROTO ORDENAMIENTO POR NOMBRE
 
   const clearFilters = () => {
     dispatch(filterPokemons([]));
-    // dispatch(getExactPokemon());
     pokemons.sort(sorterOne);
   };
 
@@ -57,15 +56,3 @@ export default function Filters() {
     </div>
   );
 }
-
-///////////////////////////////////////////////////////////////////
-
-///////////////////////////////////////////////////////////////////////
-
-// let onClick = (e) => {
-//   e.preventDefault();
-//   console.log(exactPokemon);
-//   dispatch(getExactPokemon());
-//   dispatch(getPokemons());
-//   console.log(exactPokemon);
-// };

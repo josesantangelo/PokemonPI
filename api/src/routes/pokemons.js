@@ -8,8 +8,6 @@ const pokemons = Router();
 
 pokemons.get("/", async (req, res, next) => {
   const { name } = req.query;
-  // const page = parseInt(req.query.page);
-  // const limit = parseInt(req.query.limit);
 
   let pokemon;
 
@@ -34,36 +32,22 @@ pokemons.get("/", async (req, res, next) => {
     }
   } else {
     let totalPokemonApi = [];
-    // let url = API;
+
     let urlArr = [];
-    // let finishIndex = page * limit;
-    // let startIndex = finishIndex - limit + 1;
-    //saque limite && < 40
+
     for (let i = 1; i <= 40; i++) {
-      // if (i === 0 || (i > 898 && i < 10002) || i > 10220) continue;
       urlArr = [...urlArr, axios.get(`${API}/${i}`)];
     }
 
     await axios.all(urlArr).then(
       axios.spread((...responses) => {
         responses.forEach((res) => {
-          // console.log(res.data.name);
           pokemon = new PokemonDetail(res.data);
           totalPokemonApi = [...totalPokemonApi, pokemon];
         });
       })
     );
-    // if (type1 && type2) {
-    //   console.log()
-    //   totalPokemonApi = totalPokemonApi.filter((element) =>
-    //     element.types.includes(type1 || type2)
-    //   );
-    // }
-    // if (type1) {
-    //   totalPokemonApi = totalPokemonApi.filter((element) =>
-    //     element.types.includes(type1)
-    //   );
-    // }
+
     const totalPokemonDB = await Pokemon.findAll({
       include: {
         model: Type,
@@ -77,22 +61,13 @@ pokemons.get("/", async (req, res, next) => {
       });
     }
     const totalPokemon = totalPokemonApi.concat(totalPokemonDB);
-    // if (page < 40) {
+
     res.send(totalPokemon);
-    // }
-    // if (totalPokemonDB.length < 8 && page > 4) {
-    //   res.send([])
-    // }
-    // if (page > 4) {
-    //   res.send(totalPokemonDB.slice(8 + 12 * (page - 5)));
-    // }
-    // res.send(totalPokemon.slice(0, 12));
   }
 });
 
 pokemons.get("/:id", async (req, res, next) => {
   const { id } = req.params;
-  //Agregar check para que < 898 y > 10002 y < 10220
 
   if (id.length > 6) {
     try {
@@ -125,7 +100,7 @@ pokemons.post("/", async (req, res, next) => {
       weight,
     });
 
-    //YA LINKEA LOS POKEMONS CON LOS TIPOS. FALTA INCLUIR LOS TIPOS EN EL NUEVO POKEMON (QUEDAN NULL)
+    //LIMPIAR TYPES PARA QUE QUEDEN COMO LOS DE LA API
     newPoke.addType(types);
 
     res.json(newPoke);
