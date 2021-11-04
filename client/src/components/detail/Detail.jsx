@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { detailedPokemon } from "../../store/actions/actions";
 import s from "./detail.module.css";
+
 export default function Detail() {
   let dispatch = useDispatch();
   const detailedPoke = useSelector((state) => state.detailedPokemon);
@@ -18,6 +20,9 @@ export default function Detail() {
       {!detailedPoke && <img src={loading} alt="poke"></img>}
       {detailedPoke && (
         <div>
+          <div>
+            <Link to="/home">VOLVER</Link>
+          </div>
           <h1>{detailedPoke?.name} </h1>
           <h2>{detailedPoke?.id}</h2>
           <img src={detailedPoke?.img} alt="Poke" />

@@ -12,6 +12,7 @@ let empty = [
 export default function Type({ name }) {
   const pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
+
   const findByType = (type1, type2) => {
     if (!type2) {
       console.log("primer if");

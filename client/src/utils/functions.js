@@ -26,6 +26,21 @@ export function sorterForty(a, b) {
   }
 }
 
+export function sorterWeakest(a, b) {
+  if (a.attack < b.attack) {
+    return -1;
+  } else {
+    return 1;
+  }
+}
+
+export function sorterStrongest(a, b) {
+  if (a.attack < b.attack) {
+    return 1;
+  } else {
+    return -1;
+  }
+}
 //__________________________________________________________________
 
 //VALIDATION FUNCTIONS (FORM)

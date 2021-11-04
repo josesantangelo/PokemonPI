@@ -1,131 +1,139 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import s from "./form.module.css";
-// import { validatePokemon } from "../../utils/functions.js";
-export default function Form() {
+
+const Form = () => {
   const types = useSelector((state) => state.types);
-  const pokemons = useSelector((state) => state.pokemons);
-  console.log("types del form", types);
-  const [name, setName] = useState("");
-  const [hp, setHp] = useState("");
-  const [attack, setAttack] = useState("");
-  const [type, setTypes] = useState([]);
-  const [defense, setDefense] = useState("");
-  const [speed, setSpeed] = useState("");
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [error, setError] = useState({
+  const [form, setForm] = useState({
     name: "",
-    hp: "",
-    attack: "",
-    defense: "",
-    speed: "",
+    hp: 1,
+    attack: 1,
+    defense: 1,
+    speed: 1,
+    height: 1,
+    weight: 1,
+    type1: null,
+    type2: null,
+    types: [],
   });
-  let pokeNames = pokemons.map((element) => element.name);
-
   let tipos = types.map((element) => element.name);
+  const createPokemon = (e) => {
+    e.preventDefault();
+    console.log(form);
+  };
+  const onChange = (e) => {
+    const { value, name, type } = e.target;
 
-  const validatePokemon = (value) => {
-    if (pokeNames.includes(value.toLowerCase())) {
-      setError({
-        ...error,
-        name: `${value} ya existe! Probaste Super${value}?`,
-      });
-      console.log(error.name);
-    } else {
-      setError({ ...error, name: "" });
-    }
-    setName(value);
+    console.log(e.target.type);
+    setForm({
+      ...form,
+      [name]: type === "number" ? Number(value) : value,
+    });
   };
 
-  const validatestats = (value, set, stat) => {
-    if (isNaN(value) || value < 0 || value > 100) {
-      setError({
-        ...error,
-        [stat]: "Tiene que ser un numero entre 0 y 100!",
-      });
-    } else {
-      setError({ ...error, [stat]: "" });
-    }
-    set(value);
-  };
+  // const onChangeSelect = (e) => {
+  //   const { value, name } = e.target;
 
-  const getSelectedTypes = (e) => {
-    console.log("click");
-  };
+  //   setForm({
+  //     ...form,
+
+  //   })
+  // };
   return (
-    <form action="#" className={s.form}>
-      <div className={s.labels}>
-        <label htmlFor="Name">Name</label>
-        <label htmlFor="HP">HP</label>
-        <label htmlFor="Attack">ATTACK</label>
-        <label htmlFor="Defense">DEFENSE</label>
-        <label htmlFor="Speed">SPEED</label>
-        <label htmlFor="Height">HEIGHT</label>
-        <label htmlFor="Weight">WEIGHT</label>
-      </div>
-      <div className={s.inputs}>
-        <input
-          type="text"
-          placeholder="nombre..."
-          onChange={(e) => validatePokemon(e.target.value)}
-          className={error.name && s.danger}
-        />
-        {error.name ? <span>{error.name}</span> : null}
-
-        <input
-          type="number"
-          min="1"
-          max="100"
-          placeholder="hp..."
-          onChange={(e) => validatestats(e.target.value, setHp, "hp")}
-          className={error.hp && s.danger}
-        />
-        {error.hp ? <span>HP {error.hp}</span> : null}
-        <input
-          type="number"
-          min="1"
-          max="100"
-          placeholder="attack..."
-          onChange={(e) => validatestats(e.target.value, setAttack, "attack")}
-          className={error.attack && s.danger}
-        />
-        {error.attack ? <span>Attack {error.attack}</span> : null}
-
-        <select name="types" id="types" onClick={(e) => getSelectedTypes()}>
-          {tipos.map((element) => {
-            return (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            );
-          })}
-        </select>
-
-        <input
-          type="number"
-          min="1"
-          max="100"
-          placeholder="defense..."
-          onChange={(e) => validatestats(e.target.value, setAttack, "defense")}
-          className={error.defense && s.danger}
-        />
-        {error.defense ? <span>Defense {error.defense}</span> : null}
-        <input
-          type="number"
-          min="1"
-          max="100"
-          placeholder="speed..."
-          onChange={(e) => validatestats(e.target.value, setAttack, "speed")}
-          className={error.speed && s.danger}
-        />
-        {error.speed ? <span>Speed {error.speed}</span> : null}
-        <input type="text" placeholder="height..." />
-        <input type="text" placeholder="weight..." />
-        <input type="submit" />
-      </div>
-    </form>
+    <div>
+      <form className={s.form} onSubmit={createPokemon}>
+        <div className={s.labels}>
+          <label>Name: </label>
+          <label>Hp: </label>
+          <label>Attack: </label>
+          <label>Defense: </label>
+          <label>Speed: </label>
+          <label>Height: </label>
+          <label>Weight: </label>
+        </div>
+        <div>
+          <input
+            className={s.inputs}
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="hp"
+            value={form.hp}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="attack"
+            value={form.attack}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="defense"
+            value={form.defense}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="speed"
+            value={form.speed}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="height"
+            value={form.height}
+            onChange={onChange}
+          />
+          <input
+            className={s.inputs}
+            type="number"
+            min="1"
+            max="100"
+            name="weight"
+            value={form.weight}
+            onChange={onChange}
+          />
+          <div>
+            <label htmlFor=""> Type 1</label>
+            <label htmlFor="">Type 2</label>
+          </div>
+          <div>
+            <select name="type1" id="" onChange={onChange}>
+              {tipos.map((element) => {
+                return <option value={element}>{element}</option>;
+              })}
+            </select>
+            <select name="type2" id="" onChange={onChange}>
+              {tipos.map((element) => {
+                return <option value={element}>{element}</option>;
+              })}
+            </select>
+          </div>
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
   );
-}
+};
 
-// name, hp, attack, types, defense, speed, height, weight;
+export default Form;
