@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getPokemons,
@@ -26,10 +26,10 @@ export default function Pokemons() {
 
   function calcularMax() {
     if (filteredPokemons.length) {
-      console.log("page con filter");
+      // console.log("page con filter");
       return Math.ceil(filteredPokemons.length / 12);
     } else {
-      console.log("page sin filter");
+      // console.log("page sin filter");
       return Math.ceil(pokemons.length / 12);
     }
   }

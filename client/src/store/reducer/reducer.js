@@ -5,6 +5,7 @@ import {
   SET_PAGES,
   SET_SELECTEDPAGE,
   FILTER_POKEMON,
+  DETAILED_POKEMON,
 } from "../actions/action_types.js";
 
 const initialState = {
@@ -12,6 +13,7 @@ const initialState = {
   filteredPokemons: [],
   types: [],
   pokemon: null,
+  detailedPokemon: null,
   pages: [],
   selectedPage: 1,
 };
@@ -47,6 +49,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         filteredPokemons: action.payload,
+      };
+    }
+    case DETAILED_POKEMON: {
+      return {
+        ...state,
+        detailedPokemon: action.payload,
       };
     }
 

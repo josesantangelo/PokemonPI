@@ -5,8 +5,10 @@ import {
   SET_PAGES,
   SET_SELECTEDPAGE,
   FILTER_POKEMON,
+  DETAILED_POKEMON,
 } from "./action_types.js";
 import axios from "axios";
+import { bindActionCreators } from "redux";
 // import { search } from "../../components/search/Search.jsx";
 export function getPokemons() {
   return async function (dispatch) {
@@ -100,5 +102,36 @@ export function setSelectedPage(value) {
       type: SET_SELECTEDPAGE,
       payload: value,
     });
+  };
+}
+
+export function detailedPokemon(value) {
+  return async function (dispatch) {
+    if (value === null) {
+      dispatch({
+        type: DETAILED_POKEMON,
+        payload: value,
+      });
+    } else {
+      let detailed = await axios.get(`http://localhost:3001/pokemons/${value}`);
+      try {
+        dispatch({
+          type: DETAILED_POKEMON,
+          payload: detailed.data,
+        });
+      } catch (error) {
+        dispatch({
+          type: GET_EXACTPOKEMON,
+          payload: {
+            data: {
+              name: "No existe",
+              types: [],
+              id: "",
+              img: "https://svgsilh.com/svg_v2/1574006.svg",
+            },
+          },
+        });
+      }
+    }
   };
 }
