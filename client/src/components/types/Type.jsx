@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import { filterPokemons } from "../../store/actions/actions";
 import s from "./type.module.css";
-
+let empty = [
+  {
+    name: `El equipo Rocket estuvo aqui!`,
+    types: [],
+    id: "",
+    img: "https://www.pngarea.com/pngm/70/6557847_rocket-league-ball-png-team-rocket-pokemon-logo.png",
+  },
+];
 export default function Type({ name }) {
   const pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
@@ -11,7 +18,11 @@ export default function Type({ name }) {
       let filtered = pokemons.filter((element) =>
         element.types.includes(type1)
       );
-      return dispatch(filterPokemons(filtered));
+      if (filtered.length) {
+        return dispatch(filterPokemons(filtered));
+      } else {
+        return dispatch(filterPokemons(empty));
+      }
     }
 
     // console.log("segundo if");
