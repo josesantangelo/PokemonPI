@@ -11,7 +11,6 @@ export default function Pokemon({ name, types, id, img }) {
         id={s.card}
         className={types[0]}
         onClick={() => {
-          dispatch(detailedPokemon(null));
           dispatch(detailedPokemon(id));
         }}
       >

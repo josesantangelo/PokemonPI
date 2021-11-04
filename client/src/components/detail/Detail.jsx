@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { detailedPokemon } from "../../store/actions/actions";
 import s from "./detail.module.css";
 export default function Detail() {
+  let dispatch = useDispatch();
   const detailedPoke = useSelector((state) => state.detailedPokemon);
-  // let dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(detailedPokemon(null));
-  // }, [dispatch, detailedPoke]);
-  console.log("detailed ", detailedPoke);
+  useEffect(() => {
+    return () => {
+      dispatch(detailedPokemon(null));
+    };
+  }, []);
+  let loading = "https://j.gifs.com/Kk546b.gif";
 
   return (
     //ELEGIR MEJOR FORMA DE VALIDAR HAY VARIAS
     <div className={s.cardDetail}>
+      {!detailedPoke && <img src={loading} alt="poke"></img>}
       {detailedPoke && (
         <div>
           <h1>{detailedPoke?.name} </h1>

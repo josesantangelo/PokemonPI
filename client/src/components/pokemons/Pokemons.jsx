@@ -44,11 +44,12 @@ export default function Pokemons() {
   //DETERMINO LA CANTIDAD DE POKEMONS POR PAGINA, UTILIZANDO EL STATE POKEMONS Y SELECTED PAGE PARA CALCULARLO
   let limit = 12;
   let show = pokemons.slice(selectedPage * limit - limit, selectedPage * limit);
-
+  let loading = "let loading...";
   //__________________________________________________________________________________
   return (
     <>
       <div className={s.cards}>
+        {!exactPokemon && !filteredPokemons && !pokemons && <h1>{loading}</h1>}
         {exactPokemon && (
           <Pokemon
             name={exactPokemon.name}
