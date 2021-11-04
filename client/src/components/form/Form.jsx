@@ -30,7 +30,6 @@ const Form = () => {
       [name]: type === "number" ? Number(value) : value,
     });
   };
-
   // const onChangeSelect = (e) => {
   //   const { value, name } = e.target;
 
