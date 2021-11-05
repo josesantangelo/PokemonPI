@@ -18,6 +18,11 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
 
+      img: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+
       // type: {
       //   type: DataTypes.ARRAY(DataTypes.STRING),
       // },

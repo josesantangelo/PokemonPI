@@ -7,7 +7,7 @@ import s from "./asydeTypes.module.css";
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
   let dispatch = useDispatch();
-
+  // console.log("types", types);
   useEffect(() => {
     dispatch(getTypes());
   }, []);

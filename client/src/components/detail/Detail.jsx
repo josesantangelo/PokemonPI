@@ -13,20 +13,21 @@ export default function Detail() {
     };
   }, []);
   let loading = "https://j.gifs.com/Kk546b.gif";
-
+  console.log(detailedPoke);
+  let mapTypes = detailedPoke?.types?.map((element) => element.name);
   return (
     //ELEGIR MEJOR FORMA DE VALIDAR HAY VARIAS
     <div className={s.cardDetail}>
       {!detailedPoke && <img src={loading} alt="poke"></img>}
       {detailedPoke && (
-        <div>
+        <div className={s.container}>
           <div>
             <Link to="/home">VOLVER</Link>
           </div>
           <h1>{detailedPoke?.name} </h1>
           <h2>{detailedPoke?.id}</h2>
           <img src={detailedPoke?.img} alt="Poke" />
-          <h2>{detailedPoke?.types.join("/")}</h2>
+          <h2>{mapTypes.join("/")}</h2>
           <div className={s.stats}>
             <h3>HP : {detailedPoke?.hp}</h3>
             <h3>ATTACK : {detailedPoke?.attack}</h3>

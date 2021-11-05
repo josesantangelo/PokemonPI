@@ -9,13 +9,14 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        // primaryKey: true,
       },
-      // id_api: {
-      //   type: DataTypes.INTEGER,
-      //   allowNull: false,
-      // },
+      id_api: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+      },
     },
+
     {
       timestamps: false,
     }

@@ -14,7 +14,7 @@ function App() {
         <Welcome />
       </Route>
       <Route exact path="/home">
-        <Navbar />
+        {/* <Navbar /> */}
         <Header />
         <BodyContainer />
       </Route>

@@ -43,38 +43,40 @@ export function getTypes() {
 
 export function getExactPokemon(value) {
   return async function (dispatch) {
-    if (!value) {
+    if (value === null) {
       dispatch({
         type: GET_EXACTPOKEMON,
         payload: value,
       });
-    }
-    try {
-      let exactPokemons = await axios.get(
-        `http://localhost:3001/pokemons?name=${value}`
-      );
+    } else {
+      try {
+        let exactPokemons = await axios.get(
+          `http://localhost:3001/pokemons?name=${value}`
+        );
 
-      dispatch({
-        type: GET_EXACTPOKEMON,
-        payload: exactPokemons,
-      });
-    } catch (error) {
-      dispatch({
-        type: GET_EXACTPOKEMON,
-        payload: {
-          data: {
-            name: "No existe",
-            types: [],
-            id: "",
-            img: "https://svgsilh.com/svg_v2/1574006.svg",
+        dispatch({
+          type: GET_EXACTPOKEMON,
+          payload: exactPokemons.data,
+        });
+      } catch (error) {
+        dispatch({
+          type: GET_EXACTPOKEMON,
+          payload: {
+            data: {
+              name: "No existe",
+              types: [],
+              id: "",
+              img: "https://svgsilh.com/svg_v2/1574006.svg",
+            },
           },
-        },
-      });
+        });
+      }
     }
   };
 }
 
 export function filterPokemons(value) {
+  console.log("value filter", value);
   return function (dispatch) {
     dispatch({
       type: FILTER_POKEMON,

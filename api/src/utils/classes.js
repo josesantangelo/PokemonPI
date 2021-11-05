@@ -8,11 +8,14 @@ class PokemonItem {
         obj.sprites.other.home.front_default);
   }
 }
-
+//
 class PokemonDetail {
   constructor(obj) {
     (this.name = obj.name),
-      (this.types = obj.types.map((item) => item.type.name)),
+      (this.types = obj.types.map((item) => {
+        delete item.type.url;
+        return item.type;
+      })),
       (this.id = obj.id),
       (this.img =
         obj.sprites.other.dream_world.front_default ||

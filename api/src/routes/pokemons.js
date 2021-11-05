@@ -48,20 +48,27 @@ pokemons.get("/", async (req, res, next) => {
       })
     );
 
-    const totalPokemonDB = await Pokemon.findAll({
+    let totalPokemonDB = await Pokemon.findAll({
       include: {
         model: Type,
       },
     });
+    // totalPokemonDB = await totalPokemonDB
+    //   .forEach((element) => (element = element.dataValues))
+    //   .then(console.log(totalPokemonDB[0]));
 
-    for (let i = 0; i < totalPokemonDB.length; i++) {
-      totalPokemonDB[i].types.map((type) => {
-        delete type.id;
-        delete type.poke_type;
-      });
-    }
+    // let otroarr = await totalPokemonDB.forEach(async (pokemon) => {
+    //   await pokemon.dataValues.types.forEach((type) => {
+    //     let names = [];
+    //     delete type.id_api;
+    //     delete type.poke_type;
+    //     names.push(type.name);
+    //     pokemon.types = names;
+    //   });
+    //   return pokemon;
+    // });
+    // console.log("otroarr", otroarr);
     const totalPokemon = totalPokemonApi.concat(totalPokemonDB);
-
     res.send(totalPokemon);
   }
 });
@@ -71,7 +78,11 @@ pokemons.get("/:id", async (req, res, next) => {
 
   if (id.length > 6) {
     try {
-      const pokemonDB = await Pokemon.findByPk(id);
+      const pokemonDB = await Pokemon.findByPk(id, {
+        include: {
+          model: Type,
+        },
+      });
       return res.json(pokemonDB);
     } catch (error) {
       next(error);
@@ -85,10 +96,19 @@ pokemons.get("/:id", async (req, res, next) => {
     }
   }
 });
-
 pokemons.post("/", async (req, res, next) => {
-  const { name, hp, attack, types, defense, speed, height, weight } = req.body;
-
+  const {
+    name,
+    hp,
+    attack,
+    type1,
+    type2,
+    defense,
+    speed,
+    height,
+    weight,
+    img,
+  } = req.body;
   try {
     const newPoke = await Pokemon.create({
       name,
@@ -98,10 +118,11 @@ pokemons.post("/", async (req, res, next) => {
       speed,
       height,
       weight,
+      img,
     });
 
     //LIMPIAR TYPES PARA QUE QUEDEN COMO LOS DE LA API
-    newPoke.addType(types);
+    newPoke.addType([type1, type2]);
 
     res.json(newPoke);
   } catch (error) {

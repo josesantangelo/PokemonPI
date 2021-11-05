@@ -5,9 +5,9 @@ const types = Router();
 
 types.get("/", async (req, res, next) => {
   const totalTypes = await Type.findAll({
-    attributes: {
-      exclude: ["id", "id_api"],
-    },
+    // attributes: {
+    //   exclude: ["id", "id_api"],
+    // },
   });
 
   res.json(totalTypes);

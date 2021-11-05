@@ -33,7 +33,7 @@ export default function reducer(state = initialState, action) {
     case GET_EXACTPOKEMON:
       return {
         ...state,
-        pokemon: action.payload.data,
+        pokemon: action.payload,
       };
     case SET_PAGES:
       return {

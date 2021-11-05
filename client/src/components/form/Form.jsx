@@ -14,9 +14,7 @@ const Form = () => {
     weight: 1,
     type1: null,
     type2: null,
-    types: [],
   });
-  let tipos = types.map((element) => element.name);
   const createPokemon = (e) => {
     e.preventDefault();
     console.log(form);
@@ -118,13 +116,13 @@ const Form = () => {
           </div>
           <div>
             <select name="type1" id="" onChange={onChange}>
-              {tipos.map((element) => {
-                return <option value={element}>{element}</option>;
+              {types.map((element) => {
+                return <option value={element.id_api}>{element.name}</option>;
               })}
             </select>
             <select name="type2" id="" onChange={onChange}>
-              {tipos.map((element) => {
-                return <option value={element}>{element}</option>;
+              {types.map((element) => {
+                return <option value={element.id_api}>{element.name}</option>;
               })}
             </select>
           </div>

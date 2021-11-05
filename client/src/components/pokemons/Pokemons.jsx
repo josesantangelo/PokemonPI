@@ -4,6 +4,7 @@ import {
   getPokemons,
   setPages,
   setSelectedPage,
+  getExactPokemon,
 } from "../../store/actions/actions";
 import Pokemon from "../pokemon/Pokemon.jsx";
 
@@ -20,10 +21,19 @@ export default function Pokemons() {
   //USEEFFECT, TRAIGO POKEMONS Y GENERO LA CANTIDAD DE PAGINAS SEGUN CUANTOS LLEGUEN
   let dispatch = useDispatch();
   useEffect(() => {
+    // dispatch(getExactPokemon(null));
     dispatch(setSelectedPage(1));
     dispatch(getPokemons());
   }, []);
 
+  useEffect(() => {
+    return () => {
+      dispatch(getExactPokemon(null));
+      dispatch(setSelectedPage(1));
+    };
+  }, []);
+
+  console.log("poke", pokemons);
   function calcularMax() {
     if (filteredPokemons.length) {
       // console.log("page con filter");
@@ -44,6 +54,10 @@ export default function Pokemons() {
   //DETERMINO LA CANTIDAD DE POKEMONS POR PAGINA, UTILIZANDO EL STATE POKEMONS Y SELECTED PAGE PARA CALCULARLO
   let limit = 12;
   let show = pokemons.slice(selectedPage * limit - limit, selectedPage * limit);
+  let showFiltered = filteredPokemons.slice(
+    selectedPage * limit - limit,
+    selectedPage * limit
+  );
   let loading = "let loading...";
   //__________________________________________________________________________________
   return (
@@ -73,8 +87,9 @@ export default function Pokemons() {
             );
           })}
 
-        {filteredPokemons &&
-          filteredPokemons.map((element) => {
+        {!exactPokemon &&
+          filteredPokemons &&
+          showFiltered.map((element) => {
             return (
               <Pokemon
                 name={element.name}

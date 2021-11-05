@@ -13,11 +13,11 @@ export default function Type({ name }) {
   const pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
 
-  const findByType = (type1, type2) => {
+  const findByType = async (type1, type2) => {
     if (!type2) {
-      console.log("primer if");
-      let filtered = pokemons.filter((element) =>
-        element.types.includes(type1)
+      let filtered = pokemons.filter(
+        (element) =>
+          element.types[0]?.name === type1 || element.types[1]?.name === type1
       );
       if (filtered.length) {
         return dispatch(filterPokemons(filtered));
