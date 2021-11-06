@@ -10,10 +10,10 @@ export default function Navbar() {
       <div className={s.navLeft}>
         <Homeicon />
 
-        <Link to="/form">CREA TU POKEMON </Link>
+        {/* <Link to="/form">CREA TU POKEMON </Link> */}
       </div>
 
-      <Search />
+      {/* <Search /> */}
     </div>
   );
 }

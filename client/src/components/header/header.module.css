@@ -1,0 +1,19 @@
+header {
+  padding-left: 5px;
+  background: #716f81;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header img {
+  display: flex;
+  width: 250px;
+  align-self: center;
+  justify-items: center;
+}
+.homeicon {
+  display: flex;
+  justify-content: flex-start;
+  width: 50px;
+  height: 50px;
+}

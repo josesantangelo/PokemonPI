@@ -13,8 +13,140 @@
   );
   font-family: "PokemonGb-RAeo";
 }
+/* EQUILIBRA BORDERS CON PADDINGS PARA NO SALIR DE ESCUADRA */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+  color: white;
+  font-weight: 500;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-.App-logo {
+main {
+  /* width: 100vw;
+  height: 100vh; */
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside section"
+    "footer footer";
+  grid-template-rows: 100px 1fr 50px;
+  grid-template-columns: 200px 1fr;
+  /* SI SE VE EN UNA PANTALLA MAS GRANDE,AGREGA BG */
+  max-width: 1500px;
+  /* CENTRA EL CONTENIDO */
+  margin: auto;
+}
+
+header {
+  grid-area: header;
+  background: #716f81;
+}
+
+aside {
+  grid-area: aside;
+  background: #b97a95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section {
+  grid-area: section;
+  background: #f6ae99;
+  display: grid;
+  grid-gap: 20px;
+  padding: 20px;
+  /* GOOGLEAR Y SACAR ESTO */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+/*main {
+  width: 100vw;
+  height: 100vh; 
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "aside section"
+    "footer footer";
+  grid-template-rows: 100px 1fr 50px;
+  grid-template-columns: 200px 1fr;
+   SI SE VE EN UNA PANTALLA MAS GRANDE,AGREGA BG 
+  max-width: 1500px;
+   CENTRA EL CONTENIDO 
+  margin: auto;
+}*/
+
+footer {
+  grid-area: footer;
+  background: #9d5c0d;
+  /* display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+
+section div {
+  width: 100%;
+  height: 300px;
+  background: #f2e1c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #817660;
+}
+
+@media (max-width: 700px) {
+  main {
+    grid-template-rows: 50px 50px 1fr 50px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "aside"
+      "section"
+      "footer";
+  }
+
+  section {
+    grid-template-columns: 1fr 1fr;
+  }
+  section div {
+    height: 300px;
+  }
+}
+
+/* POR QUE ACA Y PORQUE SI O SI CON EL IMPORTANT???  */
+.grass:hover {
+  background-color: green !important;
+}
+
+.fire:hover {
+  background-color: rgb(212, 39, 39) !important;
+}
+
+.water:hover {
+  background-color: blue !important;
+}
+
+.bug:hover {
+  background-color: rgb(77, 199, 77) !important;
+}
+
+.electric:hover {
+  background-color: yellow !important;
+}
+
+.ground:hover {
+  background-color: rgb(165, 101, 42) !important;
+}
+
+.poison:hover {
+  background-color: rgb(161, 53, 161) !important;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -47,33 +179,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-/* POR QUE ACA Y PORQUE SI O SI CON EL IMPORTANT???  */
-.grass:hover {
-  background-color: green !important;
-}
-
-.fire:hover {
-  background-color: rgb(212, 39, 39) !important;
-}
-
-.water:hover {
-  background-color: blue !important;
-}
-
-.bug:hover {
-  background-color: rgb(77, 199, 77) !important;
-}
-
-.electric:hover {
-  background-color: yellow !important;
-}
-
-.ground:hover {
-  background-color: rgb(165, 101, 42) !important;
-}
-
-.poison:hover {
-  background-color: rgb(161, 53, 161) !important;
-}
+} */

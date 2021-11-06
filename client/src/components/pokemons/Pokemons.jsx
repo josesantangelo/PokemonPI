@@ -7,7 +7,7 @@ import {
   getExactPokemon,
 } from "../../store/actions/actions";
 import Pokemon from "../pokemon/Pokemon.jsx";
-
+import Search from "../search/Search";
 import s from "./pokemons.module.css";
 
 export default function Pokemons() {
@@ -62,45 +62,43 @@ export default function Pokemons() {
   //__________________________________________________________________________________
   return (
     <>
-      <div className={s.cards}>
-        {!exactPokemon && !filteredPokemons && !pokemons && <h1>{loading}</h1>}
-        {exactPokemon && (
-          <Pokemon
-            name={exactPokemon.name}
-            img={exactPokemon.img}
-            types={exactPokemon.types}
-            id={exactPokemon.id}
-          ></Pokemon>
-        )}
+      {!exactPokemon && !filteredPokemons && !pokemons && <h1>{loading}</h1>}
+      {exactPokemon && (
+        <Pokemon
+          name={exactPokemon.name}
+          img={exactPokemon.img}
+          types={exactPokemon.types}
+          id={exactPokemon.id}
+        ></Pokemon>
+      )}
 
-        {!exactPokemon &&
-          !filteredPokemons.length &&
-          show.map((element) => {
-            return (
-              <Pokemon
-                name={element.name}
-                types={element.types}
-                key={element.id}
-                id={element.id}
-                img={element.img}
-              ></Pokemon>
-            );
-          })}
+      {!exactPokemon &&
+        !filteredPokemons.length &&
+        show.map((element) => {
+          return (
+            <Pokemon
+              name={element.name}
+              types={element.types}
+              key={element.id}
+              id={element.id}
+              img={element.img}
+            ></Pokemon>
+          );
+        })}
 
-        {!exactPokemon &&
-          filteredPokemons &&
-          showFiltered.map((element) => {
-            return (
-              <Pokemon
-                name={element.name}
-                types={element.types}
-                key={element.id}
-                id={element.id}
-                img={element.img}
-              ></Pokemon>
-            );
-          })}
-      </div>
+      {!exactPokemon &&
+        filteredPokemons &&
+        showFiltered.map((element) => {
+          return (
+            <Pokemon
+              name={element.name}
+              types={element.types}
+              key={element.id}
+              id={element.id}
+              img={element.img}
+            ></Pokemon>
+          );
+        })}
     </>
   );
 }
