@@ -35,7 +35,7 @@ pokemons.get("/", async (req, res, next) => {
 
     let urlArr = [];
 
-    for (let i = 1; i <= 12; i++) {
+    for (let i = 1; i <= 4; i++) {
       urlArr = [...urlArr, axios.get(`${API}/${i}`)];
     }
 
