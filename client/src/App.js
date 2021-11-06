@@ -8,7 +8,8 @@ import Detail from "./components/detail/Detail";
 import Pokemons from "./components/pokemons/Pokemons";
 import Search from "./components/search/Search";
 import Paginado from "./components/paginado/Paginado";
-
+import Filters from "./components/filters/Filters";
+import AsydeTypes from "./components/asideTypes/AsydeTypes.jsx";
 function App() {
   return (
     <div className="App">
@@ -16,7 +17,10 @@ function App() {
         <main>
           <Header />
 
-          <aside>Filters</aside>
+          <aside>
+            <Filters />
+            <AsydeTypes />
+          </aside>
 
           <section>
             <div className="search">

@@ -1,13 +1,14 @@
-/* .list {
-  list-style-type: none;
-} */
-
-/* .item {
-  text-decoration: none;
-} */
-
 .container {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  width: 190px;
+}
+
+.container .type {
+  color: red;
+}
+
+.container select {
+  width: 190px;
 }

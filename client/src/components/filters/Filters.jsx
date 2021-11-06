@@ -49,65 +49,81 @@ export default function Filters() {
     }
   };
 
+  function selecter(value) {
+    switch (value) {
+      case "originAPI":
+        return apiOrDB("api", clearFilters());
+      case "originDB":
+        return apiOrDB("DB", clearFilters());
+      case "weakest":
+        return pokemons.sort(sorterWeakest, clearFilters());
+      case "strongest":
+        return pokemons.sort(sorterStrongest, clearFilters());
+      case "idOne":
+        return pokemons.sort(sorterOne, clearFilters());
+      case "idForty":
+        return pokemons.sort(sorterForty, clearFilters());
+      case "A_Z":
+        return alphabeticOrder(pokemons, "a", clearFilters());
+      case "Z_A":
+        return alphabeticOrder(pokemons, "z", clearFilters());
+      case "clear":
+        return clearFilters();
+      default:
+        break;
+    }
+  }
+
   //PROTO FILTRADO POR TIPO
 
   return (
-    <div className={s.buttons}>
-      {/* //CHEQUEAR QUE ANDEN!!! */}
-      <button
-        className={s.button}
-        onClick={() => apiOrDB("api", clearFilters())}
-      >
-        API
-      </button>
-      <button
-        className={s.button}
-        onClick={() => apiOrDB("DB", clearFilters())}
-      >
-        DB
-      </button>
-      <button
-        className={s.button}
-        onClick={() => pokemons.sort(sorterWeakest, clearFilters())}
-      >
-        ORDENAR ATTACK menor mayor
-      </button>
-      <button
-        className={s.button}
-        onClick={() => pokemons.sort(sorterStrongest, clearFilters())}
-      >
-        ORDENAR ATTACK mayor menor
-      </button>
-      <button
-        className={s.button}
-        onClick={() => {
-          pokemons.sort(sorterOne, clearFilters());
-        }}
-      >
-        ORDENAR POR ID menor mayor
-      </button>
-      <button
-        className={s.button}
-        onClick={() => pokemons.sort(sorterForty, clearFilters())}
-      >
-        ORDENAR POR ID mayor menor
-      </button>
-
-      <button
-        className={s.button}
-        onClick={() => alphabeticOrder(pokemons, "a", clearFilters())}
-      >
-        ORDENAR POR A-Z
-      </button>
-      <button
-        className={s.button}
-        onClick={() => alphabeticOrder(pokemons, "z", clearFilters())}
-      >
-        ORDENAR POR Z-A
-      </button>
-      <button className={s.button} onClick={() => clearFilters()}>
-        CLEAR
-      </button>
-    </div>
+    <>
+      <div className={s.container}>
+        <h5 className={s.title}>Ordenar:</h5>
+        <select
+          className={s.buttons}
+          onChange={(e) => selecter(e.target.value)}
+        >
+          {/* //CHEQUEAR QUE ANDEN!!! */}
+          <option selected disabled className={s.button}></option>
+          <option value="A_Z" className={s.button}>
+            Alfabetico A-Z
+          </option>
+          <option value="Z_A" className={s.button}>
+            Alfabetico Z-A
+          </option>
+          <option value="weakest" className={s.button}>
+            Menor ataque
+          </option>
+          <option value="strongest" className={s.button}>
+            Mayor ataque
+          </option>
+          <option value="idOne" className={s.button}>
+            Menor ID
+          </option>
+          <option value="idForty" className={s.button}>
+            Mayor ID
+          </option>
+          <option value="clear" className={s.button}>
+            Clear
+          </option>
+        </select>
+      </div>
+      <div className={s.container}>
+        <h5 className={s.title}>Origen:</h5>
+        <select
+          className={s.buttons}
+          onChange={(e) => selecter(e.target.value)}
+        >
+          <option selected disabled className={s.button}></option>
+          <option value="originAPI" className={s.button}>
+            Pokemons de API
+          </option>
+          <option value="originDB" className={s.button}>
+            Pokemons creados
+          </option>
+        </select>
+      </div>
+    </>
   );
 }

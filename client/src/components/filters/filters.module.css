@@ -1,9 +1,20 @@
 .buttons {
   display: flex;
   justify-content: center;
+  width: 190px;
 }
 
 .button {
+  font-size: 10px;
   margin-right: 10px;
   margin-left: 10px;
+  font-family: "PokemonGb-RAeo";
+}
+
+.container {
+  margin-top: -8px;
+}
+
+.title {
+  margin-bottom: 10px;
 }

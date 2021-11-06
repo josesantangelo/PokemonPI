@@ -1,5 +1,4 @@
 //ORDER FUNCTIONS
-
 export const alphabeticOrder = (arr, order, cb) => {
   //let ordenados = pokemons y trabajo sobre ordenados ???
   if (order === "a") {
