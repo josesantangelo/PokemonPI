@@ -26,8 +26,8 @@ body {
 }
 
 main {
-  /* width: 100vw;
-  height: 100vh; */
+  width: 100vw;
+  height: 100vh;
   display: grid;
   grid-template-areas:
     "header header"
@@ -43,7 +43,6 @@ main {
 
 header {
   grid-area: header;
-  background: #716f81;
 }
 
 aside {
@@ -56,12 +55,39 @@ aside {
 
 section {
   grid-area: section;
+  display: grid;
+  grid-template-areas:
+    "search"
+    "pokemons"
+    "pagination";
+  grid-template-rows: 40px 1fr 40px;
+  grid-template-columns: 1fr;
+}
+
+.search {
+  grid-area: search;
+  padding: 5px;
+  background-color: red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pokemons {
+  background-color: blue;
+  grid-area: pokemons;
   background: #f6ae99;
   display: grid;
+  align-items: center;
   grid-gap: 20px;
   padding: 20px;
   /* GOOGLEAR Y SACAR ESTO */
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.paginado {
+  grid-area: pagination;
+  background-color: yellow;
 }
 
 /*main {
@@ -88,7 +114,7 @@ footer {
   justify-content: center; */
 }
 
-section div {
+.pokemons div {
   width: 100%;
   height: 300px;
   background: #f2e1c1;

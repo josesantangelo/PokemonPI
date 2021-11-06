@@ -1,12 +1,14 @@
 import "./App.css";
 import Welcome from "./components/welcome/Welcome";
-import { Route } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import BodyContainer from "./components/bodyContainer/BodyContainer";
 import Form from "./components/form/Form";
 import Header from "./components/header/Header";
 import Detail from "./components/detail/Detail";
 import Pokemons from "./components/pokemons/Pokemons";
 import Search from "./components/search/Search";
+import Paginado from "./components/paginado/Paginado";
+
 function App() {
   return (
     <div className="App">
@@ -17,7 +19,16 @@ function App() {
           <aside>Filters</aside>
 
           <section>
-            <Pokemons />
+            <div className="search">
+              <Search />
+              <Link>Crea tu pokemon</Link>
+            </div>
+            <div className="pokemons">
+              <Pokemons />
+            </div>
+            <div className="paginado">
+              <Paginado />
+            </div>
           </section>
           <footer>Footer</footer>
         </main>
