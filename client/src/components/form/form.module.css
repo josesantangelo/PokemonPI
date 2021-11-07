@@ -1,4 +1,81 @@
+.container {
+  height: 100vh;
+  background-color: white;
+  background: url("../../utils/img/bg_form.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  display: grid;
+  grid-template-areas:
+    "return"
+    "card";
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 1fr;
+}
+
+.return {
+  grid-area: return;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.return img {
+  width: 40px;
+  height: 40px;
+}
+
+.card {
+  grid-area: card;
+  margin: 20px 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
 .form {
+  padding-top: 10px;
+  width: 50%;
+  height: 90%;
+  display: flex;
+}
+.error {
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50%;
+  height: 33%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.submit {
+  width: 100%;
+  height: auto;
+}
+
+.inputs {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputs select {
+  text-transform: capitalize;
+}
+
+.label {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* .form {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,4 +101,4 @@
   display: flex;
   flex-direction: column;
   margin-left: 5px;
-}
+} */

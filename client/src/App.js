@@ -37,7 +37,9 @@ function App() {
           <section>
             <div className="search">
               <Search />
-              <Link className="linkForm">Crea tu pokemon</Link>
+              <Link className="linkForm" to="/form">
+                Crea tu pokemon
+              </Link>
             </div>
             <div className="pokemons">
               <Pokemons />
@@ -60,6 +62,9 @@ function App() {
       </Route>
       <Route exact path="/detail">
         <Detail />
+      </Route>
+      <Route exact path="/form">
+        <Form />
       </Route>
     </div>
 
