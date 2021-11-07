@@ -35,14 +35,14 @@ pokemons.get("/", async (req, res, next) => {
 
     let urlArr = [];
 
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 40; i++) {
       urlArr = [...urlArr, axios.get(`${API}/${i}`)];
     }
 
     await axios.all(urlArr).then(
       axios.spread((...responses) => {
         responses.forEach((res) => {
-          pokemon = new PokemonDetail(res.data);
+          pokemon = new PokemonItem(res.data);
           totalPokemonApi = [...totalPokemonApi, pokemon];
         });
       })

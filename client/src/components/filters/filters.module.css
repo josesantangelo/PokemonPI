@@ -1,11 +1,19 @@
 .buttons {
+  border: none;
+  background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   width: 190px;
+  cursor: pointer;
+}
+
+.buttons:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
 }
 
 .button {
-  font-size: 10px;
+  font-size: 12px;
   margin-right: 10px;
   margin-left: 10px;
   font-family: "PokemonGb-RAeo";
@@ -17,4 +25,21 @@
 
 .title {
   margin-bottom: 10px;
+}
+
+.buttonClear {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 9px;
+  padding: 8px;
+  font-size: 10px;
+  font-weight: bolder;
+  font-family: "PokemonGb-RAeo";
+  cursor: pointer;
+}
+
+.buttonClear:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
 }

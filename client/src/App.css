@@ -4,13 +4,7 @@
 }
 .App {
   text-align: center;
-  background: rgb(2, 0, 36);
-  background: radial-gradient(
-    circle,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(255, 134, 134, 1) 0%,
-    rgba(242, 242, 242, 1) 100%
-  );
+
   font-family: "PokemonGb-RAeo";
 }
 /* EQUILIBRA BORDERS CON PADDINGS PARA NO SALIR DE ESCUADRA */
@@ -18,6 +12,12 @@
   box-sizing: border-box;
 }
 body {
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(255, 134, 134, 1) 0%,
+    rgba(242, 242, 242, 1) 100%
+  );
   margin: 0px;
   padding: 0px;
   color: white;
@@ -43,17 +43,25 @@ main {
 
 header {
   grid-area: header;
+  /* background: #f6ae99; */
 }
 
 aside {
   grid-area: aside;
-  background: #b97a95;
+
+  /* background: #f6ae99; */
+  padding-top: 6px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
 
+aside img {
+  margin-top: 50px;
+  height: 200px;
+  width: 200px;
+}
 section {
   grid-area: section;
   display: grid;
@@ -61,23 +69,35 @@ section {
     "search"
     "pokemons"
     "pagination";
-  grid-template-rows: 40px 1fr 40px;
+  grid-template-rows: 50px 1fr 50px;
   grid-template-columns: 1fr;
 }
 
 .search {
   grid-area: search;
-  padding: 10px;
-  background-color: red;
+  padding: 28px;
+  /* background: #f6ae99; */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.linkForm {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  box-shadow: inset 0 0 0 0.5px black;
+  border-radius: 5px;
+}
+
+.linkForm:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all ease 0.5s;
+}
+
 .pokemons {
-  background-color: blue;
+  /* background-color: blue; */
   grid-area: pokemons;
-  background: #f6ae99;
+  /* background: #f6ae99; */
   display: grid;
   align-items: center;
   grid-gap: 20px;
@@ -88,31 +108,32 @@ section {
 
 .paginado {
   grid-area: pagination;
-  background-color: yellow;
+  /* background: #f6ae99; */
+  padding: 28px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-/*main {
-  width: 100vw;
-  height: 100vh; 
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "aside section"
-    "footer footer";
-  grid-template-rows: 100px 1fr 50px;
-  grid-template-columns: 200px 1fr;
-   SI SE VE EN UNA PANTALLA MAS GRANDE,AGREGA BG 
-  max-width: 1500px;
-   CENTRA EL CONTENIDO 
-  margin: auto;
-}*/
-
 footer {
+  padding-left: 5px;
+
   grid-area: footer;
-  background: #9d5c0d;
-  /* display: flex;
+
+  display: flex;
   align-items: center;
-  justify-content: center; */
+  justify-content: flex-start;
+}
+
+footer .icons * {
+  height: 25px;
+  width: 25px;
+}
+
+footer .name {
+  padding-left: 10px;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .pokemons div {
@@ -122,7 +143,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #817660;
+  /* background: #f6ae99; */
 }
 
 @media (max-width: 700px) {
@@ -145,34 +166,65 @@ footer {
 }
 
 /* POR QUE ACA Y PORQUE SI O SI CON EL IMPORTANT???  */
+.normal:hover {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+
 .grass:hover {
-  background-color: green !important;
+  background-color: rgba(1, 161, 1, 0.8) !important;
 }
 
 .fire:hover {
-  background-color: rgb(212, 39, 39) !important;
+  background-color: rgba(245, 8, 8, 0.8) !important;
 }
 
 .water:hover {
-  background-color: blue !important;
+  background-color: rgb(4, 4, 197, 0.8) !important;
+}
+
+.ice:hover {
+  background-color: rgba(151, 151, 223, 0.8) !important;
 }
 
 .bug:hover {
-  background-color: rgb(77, 199, 77) !important;
+  background-color: rgb(77, 199, 77, 0.8) !important;
 }
 
 .electric:hover {
-  background-color: yellow !important;
+  background-color: rgb(243, 243, 29, 0.8) !important;
 }
 
 .ground:hover {
-  background-color: rgb(165, 101, 42) !important;
+  background-color: rgb(194, 127, 65, 0.8) !important;
 }
 
 .poison:hover {
-  background-color: rgb(161, 53, 161) !important;
+  background-color: rgb(161, 53, 161, 0.8) !important;
 }
 
+.fairy:hover {
+  background-color: rgb(255, 128, 213, 0.8) !important;
+}
+
+.fighting:hover {
+  background-color: rgba(248, 147, 15, 0.8) !important;
+}
+
+.dragon:hover {
+  background-color: rgba(251, 121, 61, 0.8) !important;
+}
+
+.psychic:hover {
+  background-color: rgba(219, 123, 219, 0.8) !important;
+}
+
+.rock:hover {
+  background-color: rgb(128, 63, 11, 0.8) !important;
+}
+
+.ghost:hover {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
 /* .App-logo {
   height: 40vmin;
   pointer-events: none;

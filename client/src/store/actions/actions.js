@@ -53,21 +53,20 @@ export function getExactPokemon(value) {
         let exactPokemons = await axios.get(
           `http://localhost:3001/pokemons?name=${value}`
         );
-
+        console.log("llego!", exactPokemons.data);
         dispatch({
           type: GET_EXACTPOKEMON,
           payload: exactPokemons.data,
         });
       } catch (error) {
+        console.log("error!");
         dispatch({
           type: GET_EXACTPOKEMON,
           payload: {
-            data: {
-              name: "No existe",
-              types: [],
-              id: "",
-              img: "https://svgsilh.com/svg_v2/1574006.svg",
-            },
+            name: "No existe",
+            types: [{ name: " " }],
+            id: "",
+            img: "https://svgsilh.com/svg_v2/1574006.svg",
           },
         });
       }

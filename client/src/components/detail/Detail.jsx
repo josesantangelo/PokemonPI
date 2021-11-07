@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { detailedPokemon } from "../../store/actions/actions";
 import s from "./detail.module.css";
-
+import back from "../../utils/img/back.png";
 export default function Detail() {
   let dispatch = useDispatch();
   const detailedPoke = useSelector((state) => state.detailedPokemon);
@@ -12,43 +12,64 @@ export default function Detail() {
       dispatch(detailedPokemon(null));
     };
   }, []);
-  let loading = "https://j.gifs.com/Kk546b.gif";
-  console.log(detailedPoke);
+  let loading =
+    "https://thumbs.gfycat.com/FaithfulShrillFairyfly-size_restricted.gif";
+
   let mapTypes = detailedPoke?.types?.map((element) => element.name);
+  console.log("poke", detailedPoke);
   return (
-    //ELEGIR MEJOR FORMA DE VALIDAR HAY VARIAS
-    <div className={s.cardDetail}>
-      {!detailedPoke && <img src={loading} alt="poke"></img>}
+    <>
+      {!detailedPoke && (
+        <div className={s.containerLoading}>
+          <img src={loading} alt="poke"></img>
+        </div>
+      )}
+
       {detailedPoke && (
         <div className={s.container}>
-          <div>
-            <Link to="/home">VOLVER</Link>
+          <div className={s.return}>
+            <Link to="/home">
+              <img src={back} alt="" />
+            </Link>
           </div>
-          <h1>{detailedPoke?.name} </h1>
-          <h2>{detailedPoke?.id}</h2>
-          <img src={detailedPoke?.img} alt="Poke" />
-          <h2>{mapTypes.join("/")}</h2>
-          <div className={s.stats}>
-            <h3>HP : {detailedPoke?.hp}</h3>
-            <h3>ATTACK : {detailedPoke?.attack}</h3>
-            <h3>DEFENSE : {detailedPoke?.defense}</h3>
-            <h3>SPEED : {detailedPoke?.speed}</h3>
-            <h3>WEIGHT : {detailedPoke?.weight}</h3>
-            <h3>HEIGHT : {detailedPoke?.height}</h3>
+          <div className={s.card}>
+            <div className={s.principal}>
+              <img src={detailedPoke?.img} alt="Poke" />
+              <h2>
+                {detailedPoke?.name[0]?.toUpperCase() +
+                  detailedPoke?.name?.slice(1)}
+              </h2>
+              <h3>{mapTypes?.join("/")}</h3>
+              <h3>{`# ${detailedPoke?.id}`}</h3>
+            </div>
+            <div className={s.stats}>
+              <h3>HP : {detailedPoke?.hp}</h3>
+              <h3>ATTACK : {detailedPoke?.attack}</h3>
+              <h3>DEFENSE : {detailedPoke?.defense}</h3>
+              <h3>SPEED : {detailedPoke?.speed}</h3>
+              <h3>WEIGHT : {detailedPoke?.weight}</h3>
+              <h3>HEIGHT : {detailedPoke?.height}</h3>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
-// attack: 52;
-// defense: 43;
-// height: 6;
-// hp: 39;
-// id: 4;
-// img: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/4.svg";
-// name: "charmander";
-// speed: 65;
-// types: ["fire"];
-// weight: 85;
+//     <div className={s.container}>
+//
+
+//   <div className={s.pokemon}>
+//     <div className={s.general}>
+//
+//       <h2>{detailedPoke?.id}</h2>
+//       <img src={detailedPoke?.img} alt="Poke" />
+//
+//     </div>
+
+//     <div className={s.stats}>
+
+//     </div>
+//   </div>
+// </div>

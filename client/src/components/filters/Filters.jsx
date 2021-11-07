@@ -78,6 +78,14 @@ export default function Filters() {
 
   return (
     <>
+      <button
+        className={s.buttonClear}
+        onClick={() => {
+          clearFilters();
+        }}
+      >
+        Limpiar filtros
+      </button>
       <div className={s.container}>
         <h5 className={s.title}>Ordenar:</h5>
         <select
@@ -104,9 +112,6 @@ export default function Filters() {
           <option value="idForty" className={s.button}>
             Mayor ID
           </option>
-          <option value="clear" className={s.button}>
-            Clear
-          </option>
         </select>
       </div>
       <div className={s.container}>
@@ -117,10 +122,10 @@ export default function Filters() {
         >
           <option selected disabled className={s.button}></option>
           <option value="originAPI" className={s.button}>
-            Pokemons de API
+            Pokemons API
           </option>
           <option value="originDB" className={s.button}>
-            Pokemons creados
+            Pokemons DB
           </option>
         </select>
       </div>

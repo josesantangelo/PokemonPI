@@ -1,11 +1,15 @@
 class PokemonItem {
   constructor(obj) {
     (this.name = obj.name),
-      (this.types = obj.types.map((item) => item.type.name)),
-      (this.id = obj.id),
-      (this.img =
-        obj.sprites.other.dream_world.front_default ||
-        obj.sprites.other.home.front_default);
+      (this.types = obj.types.map((item) => {
+        delete item.type.url;
+        return item.type;
+      }));
+    this.id = obj.id;
+    this.img =
+      obj.sprites.other.dream_world.front_default ||
+      obj.sprites.other.home.front_default;
+    this.attack = obj.stats[1].base_stat;
   }
 }
 //
