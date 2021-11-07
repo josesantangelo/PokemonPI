@@ -122,7 +122,6 @@ pokemons.post("/", async (req, res, next) => {
     });
     //LIMPIAR TYPES PARA QUE QUEDEN COMO LOS DE LA API
     newPoke.addType([Number(type1), Number(type2)]);
-
     res.json(newPoke);
   } catch (error) {
     next(error);

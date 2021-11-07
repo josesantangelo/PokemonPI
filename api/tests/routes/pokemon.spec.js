@@ -1,8 +1,10 @@
 const request = require("supertest");
 const app = require("../../src/app.js");
-
+const { Pokemon } = require("../../src/db.js");
 describe("POKEMONS API", () => {
-  it("GET /pokemons --> array 40 pokemons", () => {
+  beforeEach(() => Pokemon.sync({ force: true }));
+
+  it("GET /pokemons --> objects array, with name, types and id ", () => {
     return request(app)
       .get("/pokemons")
       .expect("Content-Type", /json/)
@@ -20,6 +22,16 @@ describe("POKEMONS API", () => {
       });
   });
 
+  it("GET /pokemons --> array with length 40", () => {
+    return request(app)
+      .get("/pokemons")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body).toHaveLength(40);
+      });
+  });
+
   it("GET /pokemons?name='pokemon' -->  specific pokemon by name", () => {
     return request(app)
       .get("/pokemons?name=bulbasaur")
@@ -28,9 +40,25 @@ describe("POKEMONS API", () => {
       .then((response) => {
         expect(response.body).toEqual(
           expect.objectContaining({
-            name: expect.any(String),
+            name: "bulbasaur",
             types: expect.any(Array),
             id: expect.any(Number),
+          })
+        );
+      });
+  });
+
+  it("GET /pokemons?name='pokemon' -->  specific pokemon by name", () => {
+    return request(app)
+      .get("/pokemons?name=mew")
+      .expect("Content-Type", /json/)
+      .expect(200)
+      .then((response) => {
+        expect(response.body).toEqual(
+          expect.objectContaining({
+            name: "mew",
+            types: expect.any(Array),
+            id: 151,
           })
         );
       });
@@ -44,7 +72,6 @@ describe("POKEMONS API", () => {
         expect(response.body).toEqual(null);
       });
   });
-  it("POST /pokemons --> Create Pokemon on DB", () => {});
 });
 
 // /* eslint-disable import/no-extraneous-dependencies */
