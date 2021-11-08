@@ -63,7 +63,7 @@ describe("POKEMONS API", () => {
         );
       });
   });
-  it("GET /pokemons/:id --> specific pokemon by id", () => {});
+  
   it("GET /pokemons/:id --> null if invalid ID", () => {
     return request(app)
       .get("/pokemons/900")

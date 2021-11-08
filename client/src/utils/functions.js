@@ -10,6 +10,9 @@ export const alphabeticOrder = (arr, order, cb) => {
 };
 
 export function sorterOne(a, b) {
+  if (typeof b.id === "string") {
+    return -1;
+  }
   if (a.id < b.id) {
     return -1;
   } else {

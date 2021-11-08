@@ -27,6 +27,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background-color: rgb(213 213 213 / 50%);
 }
 
 .principal {

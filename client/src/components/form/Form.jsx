@@ -53,9 +53,13 @@ const Form = () => {
       ...error,
       name: `OK`,
     });
+
+    // loading = true;
     let poke = await axios.get(`http://localhost:3001/pokemons?name=${value}`);
     let name = poke.data.name;
     console.log("name", name);
+
+    // loading = false;
 
     if (name) {
       setError({
@@ -103,6 +107,7 @@ const Form = () => {
               name="name"
               value={form.name}
               autoFocus
+              autoComplete="off"
               onChange={onChange}
               onBlur={() => checkName(form.name)}
             />
@@ -118,7 +123,13 @@ const Form = () => {
                 return <option value={element.id_api}>{element.name}</option>;
               })}
             </select>
-            <input type="url" name="img" onChange={onChange} value={form.img} />
+            <input
+              type="url"
+              name="img"
+              onChange={onChange}
+              autoComplete="off"
+              value={form.img}
+            />
             <input
               className={s.input}
               type="number"
