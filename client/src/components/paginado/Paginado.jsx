@@ -10,19 +10,21 @@ export default function Paginado() {
 
   return (
     <div>
-      {pages.map((element) => {
-        return (
-          <button
-            key={element}
-            onClick={() => {
-              changePage(element);
-            }}
-            className={s.pageButton}
-          >
-            {element}
-          </button>
-        );
-      })}
+      {pages.length > 1
+        ? pages.map((element) => {
+            return (
+              <button
+                key={element}
+                onClick={() => {
+                  changePage(element);
+                }}
+                className={s.pageButton}
+              >
+                {element}
+              </button>
+            );
+          })
+        : null}
     </div>
   );
 }

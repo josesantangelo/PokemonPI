@@ -1,39 +1,49 @@
 import {
+  GET_POKEMONSORIGINAL,
   GET_POKEMONS,
-  GET_EXACTPOKEMON,
+  SEARCH,
   GET_TYPES,
   SET_PAGES,
   SET_SELECTEDPAGE,
-  FILTER_POKEMON,
   DETAILED_POKEMON,
 } from "../actions/action_types.js";
 
 const initialState = {
-  pokemons: [],
-  filteredPokemons: [],
+  pokemonsOriginal: [], //primera llamada no se toca mas
+  pokemons: [], //copia, dependiendo de los filtrados ordenamientos
   types: [],
-  pokemon: null,
+  // pokemon: null,
   detailedPokemon: null,
   pages: [],
   selectedPage: 1,
 };
 
 export default function reducer(state = initialState, action) {
+  debugger;
   switch (action.type) {
-    case GET_POKEMONS:
+    case GET_POKEMONSORIGINAL:
       return {
         ...state,
-        pokemons: action.payload.data,
+        pokemonsOriginal: action.payload,
       };
+
+    case GET_POKEMONS: {
+      console.log("payload", action.payload);
+      return {
+        ...state,
+        pokemons: action.payload,
+      };
+    }
     case GET_TYPES:
       return {
         ...state,
         types: action.payload.data,
       };
-    case GET_EXACTPOKEMON:
+    case SEARCH:
+      console.log("reducer", action.payload);
       return {
         ...state,
-        pokemon: action.payload,
+        pokemons: action.payload,
       };
     case SET_PAGES:
       return {
@@ -45,12 +55,7 @@ export default function reducer(state = initialState, action) {
         ...state,
         selectedPage: action.payload,
       };
-    case FILTER_POKEMON: {
-      return {
-        ...state,
-        filteredPokemons: action.payload,
-      };
-    }
+
     case DETAILED_POKEMON: {
       return {
         ...state,

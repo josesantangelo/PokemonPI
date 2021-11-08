@@ -30,7 +30,6 @@ function App() {
             <Filters />
             <AsydeTypes />
           </aside>
-
           <section>
             <div className="search">
               <Search />
@@ -45,6 +44,7 @@ function App() {
               <Paginado />
             </div>
           </section>
+
           <footer>
             <div className="icons">
               <SiReact />
@@ -57,31 +57,90 @@ function App() {
           </footer>
         </main>
       </Route>
-      <Route exact path="/detail">
-        <Detail />
-      </Route>
-      <Route exact path="/form">
-        <Form />
-      </Route>
     </div>
+  );
+}
+
+export default App;
+
+{
+  /* // <div className="App">
+    //   <Route exact path="/">
+    //     <Welcome />
+    //   </Route>
+    //   <Route exact path="/home">
+    //     <main>
+    //       <Header />
+    //       <aside>
+    //         <Filters />
+    //         <AsydeTypes />
+    //       </aside>
+
+    //       <section>
+            <div className="search">
+               <Search />
+               <Link className="linkForm" to="/form">
+                 Crea tu pokemon
+               </Link>
+             </div>
+             <div className="pokemons">
+               <Pokemons />
+             </div>
+             <div className="paginado">
+               <Paginado />
+           </div>
+           </section>
+           <footer>
+            <div className="icons">
+               <SiReact />
+               <SiRedux />
+               <SiCss3 />
+               <SiSequelize />
+               <SiPostgresql />
+             </div>
+             <div className="name">Jose Luis Santangelo, Cohorte FT 18-A</div>
+    //       </footer>
+    //     </main>
+    //   </Route>
+    //   <Route exact path="/detail">
+    //     <Detail />
+    //   </Route>
+    //   <Route exact path="/form">
+    //     <Form />
+    //   </Route>
+    // </div>
 
     // <div className="App">
     //   <Route exact path="/">
     //     <Welcome />
     //   </Route>
     //   <Route exact path="/home">
-    //     {/* <Navbar /> */}
-    //     <Header />
-    //     <BodyContainer />
-    //   </Route>
-    //   <Route exact path="/form">
-    //     <Form />
-    //   </Route>
-    //   <Route exact path="/detail">
-    //     <Detail />
-    //   </Route>
-    // </div>
-  );
+    //     {/* <Navbar /> */
 }
+//     <Header />
+//     <BodyContainer />
+//   </Route>
+//   <Route exact path="/form">
+//     <Form />
+//   </Route>
+//   <Route exact path="/detail">
+//     <Detail />
+//   </Route>
+// </div> */}
 
-export default App;
+// // <Pokemons />
+// <div className="App">
+//   <Route exact path="/">
+//     <Welcome />
+//   </Route>
+//   <Route exact path="/home">
+//     <main>
+//       <Header />
+//       <aside>
+//         {/* <Filters /> */}
+//         {/* <AsydeTypes /> */}
+//       </aside>
+//       <Pokemons />
+//     </main>
+//   </Route>
+// </div>

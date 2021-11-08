@@ -1,12 +1,16 @@
 //ORDER FUNCTIONS
-export const alphabeticOrder = (arr, order, cb) => {
+export const alphabeticOrder = (arr, order) => {
+  console.log("original", arr);
+  let result;
   //let ordenados = pokemons y trabajo sobre ordenados ???
   if (order === "a") {
-    arr.sort((a, b) => a.name.localeCompare(b.name));
+    result = arr.sort((a, b) => a.name.localeCompare(b.name));
   }
   if (order === "z") {
-    arr.sort((a, b) => b.name.localeCompare(a.name));
+    result = arr.sort((a, b) => b.name.localeCompare(a.name));
   }
+  console.log("result", result);
+  return result;
 };
 
 export function sorterOne(a, b) {
