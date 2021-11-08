@@ -65,6 +65,7 @@ export default function Filters() {
         apiOrDB("DB");
         break;
       case "weakest":
+        console.log("weak", pokemonState);
         pokemonState
           ? (result = pokemonState.sort(sorterWeakest))
           : (result = pokemonsOriginal.sort(sorterWeakest));
@@ -89,11 +90,15 @@ export default function Filters() {
 
         break;
       case "A_Z":
-        result = alphabeticOrder(pokemonsOriginal, "a");
+        pokemonState
+          ? (result = alphabeticOrder(pokemonState, "a"))
+          : (result = alphabeticOrder(pokemonsOriginal, "a"));
 
         break;
       case "Z_A":
-        result = alphabeticOrder(pokemonsOriginal, "z");
+        pokemonState
+          ? (result = alphabeticOrder(pokemonState, "z"))
+          : (result = alphabeticOrder(pokemonsOriginal, "z"));
         break;
 
       default:

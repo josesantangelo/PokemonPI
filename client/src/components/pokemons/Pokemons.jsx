@@ -18,7 +18,7 @@ export default function Pokemons() {
   // let exactPokemon = useSelector((state) => state.pokemon);
   let selectedPage = useSelector((state) => state.selectedPage);
 
-  const [pokemonList, setPokemonList] = useState(pokemonsOriginal);
+  // const [pokemonList, setPokemonList] = useState(pokemonsOriginal);
 
   //______________________________________________________________
 
@@ -38,12 +38,13 @@ export default function Pokemons() {
   useEffect(() => {
     console.log("USE EFFECT 2");
     dispatch(setPages(Math.ceil(pokemons.length / 12)));
-    dispatch(setSelectedPage(1));
-    setPokemonList(() =>
-      pokemons.slice(selectedPage * 12 - 12, selectedPage * 12)
-    );
-  }, [pokemons]);
 
+    // setPokemonList(() =>
+    //   pokemons.slice(selectedPage * 12 - 12, selectedPage * 12)
+    // );
+  }, [pokemons]);
+  console.log("selected", selectedPage);
+  // console.log(pokemonList);
   // useEffect(() => {
   //   return () => {
   //     dispatch(getExactPokemon(null));
@@ -68,7 +69,7 @@ export default function Pokemons() {
   //DETERMINO LA CANTIDAD DE POKEMONS POR PAGINA, UTILIZANDO EL STATE POKEMONS Y SELECTED PAGE PARA CALCULARLO
   // let limit = 12;
 
-  // let pokemonList = pokemons.slice(selectedPage * 12 - 12, selectedPage * 12);
+  let pokemonList = pokemons.slice(selectedPage * 12 - 12, selectedPage * 12);
 
   // let showFiltered = filteredPokemons.slice(
   //   selectedPage * limit - limit,

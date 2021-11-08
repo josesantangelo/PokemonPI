@@ -1,6 +1,10 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getTypes, getPokemons } from "../../store/actions/actions";
+import {
+  getTypes,
+  getPokemons,
+  setSelectedPage,
+} from "../../store/actions/actions";
 import Type from "../types/Type";
 import s from "./asydeTypes.module.css";
 import pika from "../../utils/img/Detective_Pikachu.png";
@@ -13,6 +17,7 @@ export default function Pokemons() {
   useEffect(() => {
     dispatch(getTypes());
   }, []);
+
   let empty = [
     {
       name: `El equipo Rocket estuvo aqui!`,
@@ -33,9 +38,10 @@ export default function Pokemons() {
       } else {
         dispatch(getPokemons(empty));
       }
+
+      dispatch(setSelectedPage(1));
     }
   };
-
   return (
     <div>
       <h5>Tipo:</h5>
