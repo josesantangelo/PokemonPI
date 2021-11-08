@@ -12,6 +12,7 @@ import {
   sorterWeakest,
   sorterStrongest,
 } from "../../utils/functions.js";
+import { useEffect } from "react";
 export default function Filters() {
   const pokemons = useSelector((state) => state.pokemons);
   const filteredPokemons = useSelector((state) => state.filteredPokemons);
@@ -26,12 +27,21 @@ export default function Filters() {
       img: "https://www.pngarea.com/pngm/70/6557847_rocket-league-ball-png-team-rocket-pokemon-logo.png",
     },
   ];
+
   const clearFilters = () => {
     dispatch(filterPokemons([]));
     dispatch(getExactPokemon(null));
     dispatch(setSelectedPage(1));
     pokemons.sort(sorterOne);
   };
+
+  // useEffect(() => {
+  //   if (Filters) {
+  //     let select = document.getElementById("OrderSelect");
+  //     let zero = document.getElementById("zero");
+  //     select[0] = zero;
+  //   }
+  // }, [pokemons, filteredPokemons]);
 
   const apiOrDB = (value, cb) => {
     let filtered;
@@ -90,10 +100,11 @@ export default function Filters() {
         <h5 className={s.title}>Ordenar:</h5>
         <select
           className={s.buttons}
+          id="OrderSelect"
           onChange={(e) => selecter(e.target.value)}
         >
           {/* //CHEQUEAR QUE ANDEN!!! */}
-          <option selected disabled className={s.button}></option>
+          <option selected disabled id="zero" className={s.button}></option>
           <option value="A_Z" className={s.button}>
             Alfabetico A-Z
           </option>
