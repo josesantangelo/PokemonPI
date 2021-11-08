@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getTypes, filterPokemons } from "../../store/actions/actions";
 import Type from "../types/Type";
 import s from "./asydeTypes.module.css";
+import pika from "../../utils/img/Detective_Pikachu.png";
 
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
@@ -60,6 +61,7 @@ export default function Pokemons() {
           );
         })}
       </select>
+      <img src={pika} alt="pikachu" />
     </div>
   );
 }

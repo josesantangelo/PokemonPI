@@ -49,10 +49,10 @@ export default function Filters() {
 
   const apiOrDB = (value, cb) => {
     let filtered;
-    console.log("pokemons de apiordb", pokemons);
+
     if (value === "api") {
       filtered = pokemons.filter((element) => typeof element.id === "number");
-      console.log("filtered api", filtered);
+
       return dispatch(filterPokemons(filtered));
     }
     if (value === "DB") {

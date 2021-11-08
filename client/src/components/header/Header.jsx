@@ -1,8 +1,5 @@
-import Paginado from "../paginado/Paginado.jsx";
-import Filters from "../filters/Filters.jsx";
-import Navbar from "../navbar/Navbar.jsx";
 import image from "../../utils/img/home.svg";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import s from "./header.module.css";
 export default function Header() {
   return (
@@ -19,13 +16,3 @@ export default function Header() {
     </header>
   );
 }
-
-// {
-//   /* <Navbar /> */
-// }
-// {
-//   /* <Filters /> */
-// }
-// {
-//   /* <Paginado /> */
-// }

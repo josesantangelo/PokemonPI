@@ -8,7 +8,6 @@ import {
 } from "react-icons/si";
 import Welcome from "./components/welcome/Welcome";
 import { Link, Route } from "react-router-dom";
-import BodyContainer from "./components/bodyContainer/BodyContainer";
 import Form from "./components/form/Form";
 import Header from "./components/header/Header";
 import Detail from "./components/detail/Detail";
@@ -17,7 +16,7 @@ import Search from "./components/search/Search";
 import Paginado from "./components/paginado/Paginado";
 import Filters from "./components/filters/Filters";
 import AsydeTypes from "./components/asideTypes/AsydeTypes.jsx";
-import pika from "./utils/img/Detective_Pikachu.png";
+
 function App() {
   return (
     <div className="App">
@@ -30,8 +29,6 @@ function App() {
           <aside>
             <Filters />
             <AsydeTypes />
-            {/* PASAR A ASYDE */}
-            <img src={pika} alt="pika"></img>
           </aside>
 
           <section>

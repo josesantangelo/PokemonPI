@@ -75,7 +75,6 @@ export function getExactPokemon(value) {
 }
 
 export function filterPokemons(value) {
-  console.log("value filter", value);
   return function (dispatch) {
     dispatch({
       type: FILTER_POKEMON,
