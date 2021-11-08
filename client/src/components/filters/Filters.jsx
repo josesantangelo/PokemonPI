@@ -65,7 +65,9 @@ export default function Filters() {
         apiOrDB("DB");
         break;
       case "weakest":
-        result = pokemonsOriginal.sort(sorterWeakest);
+        pokemonState
+          ? (result = pokemonState.sort(sorterWeakest))
+          : (result = pokemonsOriginal.sort(sorterWeakest));
 
         break;
       case "strongest":
@@ -75,11 +77,15 @@ export default function Filters() {
 
         break;
       case "idOne":
-        result = pokemonsOriginal.sort(sorterOne);
+        pokemonState
+          ? (result = pokemonState.sort(sorterOne))
+          : (result = pokemonsOriginal.sort(sorterOne));
 
         break;
       case "idForty":
-        result = pokemonsOriginal.sort(sorterForty);
+        pokemonState
+          ? (result = pokemonState.sort(sorterForty))
+          : (result = pokemonsOriginal.sort(sorterForty));
 
         break;
       case "A_Z":
