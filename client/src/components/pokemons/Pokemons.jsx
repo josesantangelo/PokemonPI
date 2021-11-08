@@ -32,8 +32,7 @@ export default function Pokemons() {
       dispatch(setSelectedPage(1));
     };
   }, []);
-  console.log("exact", exactPokemon);
-  console.log("poke", pokemons);
+
   function calcularMax() {
     if (filteredPokemons.length) {
       // console.log("page con filter");

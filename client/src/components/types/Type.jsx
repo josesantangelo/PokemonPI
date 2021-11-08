@@ -5,8 +5,6 @@ import s from "./type.module.css";
 export default function Type({ name, id_api }) {
   const pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
-  console.log("name de types", name);
-  console.log("idapi", id_api);
 
   return (
     <option id={id_api} value={name} className={name}>

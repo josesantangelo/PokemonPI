@@ -27,21 +27,25 @@ export default function Filters() {
       img: "https://www.pngarea.com/pngm/70/6557847_rocket-league-ball-png-team-rocket-pokemon-logo.png",
     },
   ];
-
-  const clearFilters = () => {
+  let selectOrder = document.getElementById("OrderSelect");
+  let selectOrigin = document.getElementById("origin");
+  const clearFilters = (hard) => {
     dispatch(filterPokemons([]));
     dispatch(getExactPokemon(null));
     dispatch(setSelectedPage(1));
     pokemons.sort(sorterOne);
+    if (hard) {
+      selectOrder.value = "0";
+      selectOrigin.value = "0";
+    }
   };
 
   // useEffect(() => {
-  //   if (Filters) {
-  //     let select = document.getElementById("OrderSelect");
-  //     let zero = document.getElementById("zero");
-  //     select[0] = zero;
-  //   }
-  // }, [pokemons, filteredPokemons]);
+  //   dispatch(filterPokemons([]));
+  //   dispatch(getExactPokemon(null));
+  //   dispatch(setSelectedPage(1));
+  //   pokemons.sort(sorterOne);
+  // }, [pokemons, filteredPokemons, dispatch]);
 
   const apiOrDB = (value, cb) => {
     let filtered;
@@ -91,7 +95,7 @@ export default function Filters() {
       <button
         className={s.buttonClear}
         onClick={() => {
-          clearFilters();
+          clearFilters("hard");
         }}
       >
         Limpiar filtros
@@ -104,7 +108,13 @@ export default function Filters() {
           onChange={(e) => selecter(e.target.value)}
         >
           {/* //CHEQUEAR QUE ANDEN!!! */}
-          <option selected disabled id="zero" className={s.button}></option>
+          <option
+            selected
+            disabled
+            id="zero"
+            value="0"
+            className={s.button}
+          ></option>
           <option value="A_Z" className={s.button}>
             Alfabetico A-Z
           </option>
@@ -130,8 +140,9 @@ export default function Filters() {
         <select
           className={s.buttons}
           onChange={(e) => selecter(e.target.value)}
+          id="origin"
         >
-          <option selected disabled className={s.button}></option>
+          <option selected disabled value="0" className={s.button}></option>
           <option value="originAPI" className={s.button}>
             Pokemons API
           </option>
