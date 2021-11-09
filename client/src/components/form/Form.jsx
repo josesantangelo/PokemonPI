@@ -7,6 +7,8 @@ import s from "./form.module.css";
 
 const Form = () => {
   const types = useSelector((state) => state.types);
+  let defaultImage =
+    "http://assets.stickpng.com/images/5a4613ddd099a2ad03f9c994.png";
   const [form, setForm] = useState({
     name: "",
     hp: 1,
@@ -15,11 +17,10 @@ const Form = () => {
     speed: 1,
     height: 1,
     weight: 1,
-    type1: null,
+    type1: "1",
     type2: null,
-    img: null,
+    img: defaultImage,
   });
-
   const [error, setError] = useState({
     name: " ",
     hp: null,
@@ -78,6 +79,13 @@ const Form = () => {
       });
     }
   };
+  function sorterOne(a, b) {
+    if (Number(a.id_api) < Number(b.id_api)) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
 
   return (
     <div className={s.container}>
@@ -112,8 +120,8 @@ const Form = () => {
               onBlur={() => checkName(form.name)}
             />
             <select type="number" name="type1" id="" onChange={onChange}>
-              <option value="" selected disabled></option>
-              {types.map((element) => {
+              {/* <option value="" selected disabled></option> */}
+              {types.sort(sorterOne).map((element) => {
                 return <option value={element.id_api}>{element.name}</option>;
               })}
             </select>
@@ -128,7 +136,7 @@ const Form = () => {
               name="img"
               onChange={onChange}
               autoComplete="off"
-              value={form.img}
+              // value={form.img}
             />
             <input
               className={s.input}
@@ -193,7 +201,7 @@ const Form = () => {
           {!form.image ? <span>Elegi una imagen!</span> : null}
         </div>
         <div className={s.submit}>
-          {form.name !== "" && form.type1 && form.type2 && form.img ? (
+          {form.name !== "" && form.type1 ? (
             <input type="submit" disabled={false} />
           ) : (
             <input type="submit" disabled={true} />

@@ -4,3 +4,10 @@
   align-items: center;
   justify-content: center;
 }
+.divLoading {
+  background: transparent;
+}
+.divLoading img {
+  width: 200px;
+  height: 200px;
+}

@@ -13,13 +13,18 @@ pokemons.get("/", async (req, res, next) => {
 
   if (name) {
     pokemon = await getPokemon(API, PokemonItem, name);
+    console.log("poke de api", pokemon);
     if (!pokemon) {
       try {
         pokemon = await Pokemon.findOne({
           where: {
             name: name,
           },
+          include: {
+            model: Type,
+          },
         });
+        console.log("poke de db", pokemon);
       } catch (error) {
         next(error);
       }
@@ -121,7 +126,10 @@ pokemons.post("/", async (req, res, next) => {
       img,
     });
     //LIMPIAR TYPES PARA QUE QUEDEN COMO LOS DE LA API
-    newPoke.addType([Number(type1), Number(type2)]);
+    type2
+      ? newPoke.addType([Number(type1), Number(type2)])
+      : newPoke.addType([Number(type1)]);
+
     res.json(newPoke);
   } catch (error) {
     next(error);

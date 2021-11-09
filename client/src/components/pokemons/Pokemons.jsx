@@ -6,7 +6,10 @@ import {
   getPokemonsOriginal,
 } from "../../store/actions/actions";
 import Pokemon from "../pokemon/Pokemon.jsx";
-
+import charmander from "../../utils/img/charmander.gif";
+import gif2 from "../../utils/img/gif2.gif";
+import pikachu from "../../utils/img/pikachu.gif";
+import s from "./pokemons.module.css";
 export default function Pokemons() {
   //STATES
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
@@ -40,7 +43,25 @@ export default function Pokemons() {
   //__________________________________________________________________________________
   return (
     <>
-      {!pokemonList.length && <p>{loading}</p>}
+      {!pokemonList.length && (
+        <>
+          <div className={s.divLoading}>
+            <img src={pikachu} alt="" />
+          </div>
+
+          <div className={s.divLoading}>
+            <img src={pikachu} alt="" />
+          </div>
+
+          <div className={s.divLoading}>
+            <img src={pikachu} alt="" />
+          </div>
+
+          <div className={s.divLoading}>
+            <img src={pikachu} alt="" />
+          </div>
+        </>
+      )}
       {pokemonList &&
         pokemonList.map((pokemon) => {
           return (

@@ -15,7 +15,7 @@ export default function Search() {
   let selectOrder = document.getElementById("OrderSelect");
   let selectOrigin = document.getElementById("orderOrigin");
   let selectType = document.getElementById("selectType");
-
+  let searchBar = document.getElementById("searchBar");
   let onSubmit = (e) => {
     e.preventDefault();
     if (search !== "") {
@@ -23,6 +23,7 @@ export default function Search() {
       setTimeout(() => {
         dispatch(getExactPokemon(search));
         setSearch("");
+        searchBar.value = "";
       }, 1000);
     }
 
@@ -39,11 +40,14 @@ export default function Search() {
     <div>
       <form onSubmit={onSubmit} className={s.formSearch}>
         <input
+          type="text"
+          id="searchBar"
           className={s.input}
           placeholder="Ingresá tu Pokemon"
           onChange={onChange}
           autoFocus
           onSubmit={(e) => (e.target.value = "")}
+          autoComplete="false"
         />
         <button type="submit" value="O" className={s.buttonSearch}>
           <img src={image} alt="O" />

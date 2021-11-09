@@ -26,12 +26,14 @@ export default function Filters() {
   let selectOrder = document.getElementById("OrderSelect");
   let selectOrigin = document.getElementById("orderOrigin");
   let selectType = document.getElementById("selectType");
-
-  // useEffect(() => {
-  //   return () => {
-  //     clearFilters();
-  //   };
-  // }, []);
+  let search = document.getElementById("searchBar");
+  console.log("search desde filter", search);
+  useEffect(() => {
+    return () => {
+      dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
+      dispatch(setSelectedPage(1));
+    };
+  }, []);
 
   const apiOrDB = (arr, value) => {
     let filtered;
@@ -47,10 +49,11 @@ export default function Filters() {
 
   const clearFilters = () => {
     dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
-
+    dispatch(setSelectedPage(1));
     selectOrder.value = "0";
     selectOrigin.value = "0";
     selectType.value = "0";
+    search.value = "";
   };
 
   const selecter = async (value) => {
