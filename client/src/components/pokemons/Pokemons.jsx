@@ -30,7 +30,7 @@ export default function Pokemons() {
     dispatch(setPages(Math.ceil(pokemons.length / 12)));
   }, [pokemons]);
 
-  //_______________________________________________________________________________
+  //______________________________________________________________________________
 
   //DETERMINO LA CANTIDAD DE POKEMONS POR PAGINA, UTILIZANDO EL STATE POKEMONS Y SELECTED PAGE PARA CALCULARLO
 
