@@ -9,30 +9,20 @@ import {
 } from "./action_types.js";
 import axios from "axios";
 
-// import { search } from "../../components/search/Search.jsx";
 export function getPokemonsOriginal() {
   return async function (dispatch) {
-    let pokemonsOriginal = await axios.get(
-      "http://localhost:3001/pokemons?page=1&limit=40"
-    );
+    let pokemonsOriginal = await axios.get("http://localhost:3001/pokemons");
     try {
       dispatch({
         type: GET_POKEMONSORIGINAL,
         payload: pokemonsOriginal.data,
       });
-
-      console.log("getPokemonsOriginal");
-      // dispatch({
-      //   type: GET_POKEMONS,
-      //   payload: pokemonsOriginal.data,
-      // });
     } catch (error) {
       console.log(error);
     }
   };
 }
 export function getPokemons(value) {
-  console.log("value", value);
   return function (dispatch) {
     dispatch({
       type: GET_POKEMONS,
@@ -55,7 +45,6 @@ export function setPages(value) {
 
 export function getTypes() {
   return async function (dispatch) {
-    // await axios.post("http://localhost:3001/types");
     let types = await axios.get("http://localhost:3001/types");
     try {
       dispatch({

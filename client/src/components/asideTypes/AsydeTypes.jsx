@@ -12,7 +12,8 @@ import pika from "../../utils/img/Detective_Pikachu.png";
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
-  const pokemons = useSelector((state) => state.pokemons);
+  const pokemonState = useSelector((state) => state.pokemons);
+
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());

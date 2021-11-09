@@ -25,28 +25,19 @@ export default function Filters() {
   let selectOrigin = document.getElementById("orderOrigin");
   let selectType = document.getElementById("selectType");
 
-  const apiOrDB = (value) => {
+  const apiOrDB = (arr, value) => {
     let filtered;
     if (value === "api") {
-      console.log("entre");
-      console.log("pokes en filterapi", pokemonsOriginal);
-      filtered = pokemonsOriginal.filter(
-        (element) => typeof element.id === "number"
-      );
-
-      dispatch(getPokemons(Object.assign([], filtered)));
+      filtered = arr.filter((element) => typeof element.id === "number");
     }
     if (value === "DB") {
-      filtered = pokemonsOriginal.filter((element) => element.id.length > 5);
-      filtered.length
-        ? dispatch(getPokemons(Object.assign([], filtered)))
-        : dispatch(getPokemons(Object.assign([], empty)));
+      filtered = arr.filter((element) => element.id.length > 5);
     }
+
+    return filtered.length ? filtered : empty;
   };
 
   const clearFilters = () => {
-    console.log("clean");
-    console.log("original", pokemonsOriginal);
     dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
 
     selectOrder.value = "0";
@@ -56,16 +47,19 @@ export default function Filters() {
 
   const selecter = async (value) => {
     let result;
-    debugger;
+
     switch (value) {
       case "originAPI":
-        apiOrDB("api");
+        pokemonState
+          ? (result = apiOrDB(pokemonState, "api"))
+          : (result = apiOrDB(pokemonsOriginal, "api"));
         break;
       case "originDB":
-        apiOrDB("DB");
+        pokemonState
+          ? (result = apiOrDB(pokemonState, "DB"))
+          : (result = apiOrDB(pokemonsOriginal, "DB"));
         break;
       case "weakest":
-        console.log("weak", pokemonState);
         pokemonState
           ? (result = pokemonState.sort(sorterWeakest))
           : (result = pokemonsOriginal.sort(sorterWeakest));
@@ -105,12 +99,11 @@ export default function Filters() {
         alert("unknown filter!");
         break;
     }
-    console.log("result de selecter", result);
-    // dispatch(getPokemons(result));
+
     //Al mantener length, no impacta cambio en la posicion de memoria
     //con Object.assign creo una nueva posicion.
     dispatch(getPokemons(Object.assign([], result)));
-    // dispatch(setSelectedPage(1));
+    dispatch(setSelectedPage(1));
   };
 
   return (
@@ -177,101 +170,3 @@ export default function Filters() {
     </>
   );
 }
-// import {
-//   getPokemons,
-//   getExactPokemon,
-//   setSelectedPage,
-// } from "../../store/actions/actions";
-//
-
-// //
-
-//
-//   //PROTO ORDENAMIENTO POR NOMBRE
-
-//   let selectOrder = document.getElementById("OrderSelect");
-//   let selectOrigin = document.getElementById("origin");
-//   const clearFilters = (hard) => {
-//     // dispatch(filterPokemons([]));
-//     dispatch(getExactPokemon(null));
-//     dispatch(setSelectedPage(1));
-//     // pokemons.sort(sorterOne);
-//     if (hard) {
-//       selectOrder.value = "0";
-//       selectOrigin.value = "0";
-//     }
-//   };
-
-//   // useEffect(() => {
-//   //   dispatch(filterPokemons([]));
-//   //   dispatch(getExactPokemon(null));
-//   //   dispatch(setSelectedPage(1));
-//   //   pokemons.sort(sorterOne);
-//   // }, [pokemons, filteredPokemons, dispatch]);
-
-//   //PROTO FILTRADO POR TIPO
-
-//   return (
-//     <>
-//       <button
-//         className={s.buttonClear}
-//         onClick={() => {
-//           clearFilters("hard");
-//         }}
-//       >
-//         Limpiar filtros
-//       </button>
-//       <div className={s.container}>
-//         <h5 className={s.title}>Ordenar:</h5>
-//         <select
-//           className={s.buttons}
-//           id="OrderSelect"
-//           onChange={(e) => selecter(e.target.value)}
-//         >
-//           {/* //CHEQUEAR QUE ANDEN!!! */}
-//           <option
-//             selected
-//             disabled
-//             id="zero"
-//             value="0"
-//             className={s.button}
-//           ></option>
-//           <option value="A_Z" className={s.button}>
-//             Alfabetico A-Z
-//           </option>
-//           <option value="Z_A" className={s.button}>
-//             Alfabetico Z-A
-//           </option>
-//           <option value="weakest" className={s.button}>
-//             Menor ataque
-//           </option>
-//           <option value="strongest" className={s.button}>
-//             Mayor ataque
-//           </option>
-//           <option value="idOne" className={s.button}>
-//             Menor ID
-//           </option>
-//           <option value="idForty" className={s.button}>
-//             Mayor ID
-//           </option>
-//         </select>
-//       </div>
-//       <div className={s.container}>
-//         <h5 className={s.title}>Origen:</h5>
-//         <select
-//           className={s.buttons}
-//           onChange={(e) => selecter(e.target.value)}
-//           id="origin"
-//         >
-//           <option selected disabled value="0" className={s.button}></option>
-//           <option value="originAPI" className={s.button}>
-//             Pokemons API
-//           </option>
-//           <option value="originDB" className={s.button}>
-//             Pokemons DB
-//           </option>
-//         </select>
-//       </div>
-//     </>
-//   );
-// }
