@@ -58,21 +58,7 @@ pokemons.get("/", async (req, res, next) => {
         model: Type,
       },
     });
-    // totalPokemonDB = await totalPokemonDB
-    //   .forEach((element) => (element = element.dataValues))
-    //   .then(console.log(totalPokemonDB[0]));
 
-    // let otroarr = await totalPokemonDB.forEach(async (pokemon) => {
-    //   await pokemon.dataValues.types.forEach((type) => {
-    //     let names = [];
-    //     delete type.id_api;
-    //     delete type.poke_type;
-    //     names.push(type.name);
-    //     pokemon.types = names;
-    //   });
-    //   return pokemon;
-    // });
-    // console.log("otroarr", otroarr);
     const totalPokemon = totalPokemonApi.concat(totalPokemonDB);
     res.send(totalPokemon);
   }
@@ -125,7 +111,7 @@ pokemons.post("/", async (req, res, next) => {
       weight,
       img,
     });
-    //LIMPIAR TYPES PARA QUE QUEDEN COMO LOS DE LA API
+
     type2
       ? newPoke.addType([Number(type1), Number(type2)])
       : newPoke.addType([Number(type1)]);

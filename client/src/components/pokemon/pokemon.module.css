@@ -16,6 +16,7 @@
 #card img {
   width: 200px;
   height: 200px;
+  animation: image 0.5s;
 }
 
 /* HOVERS */
@@ -23,4 +24,14 @@
 #card:hover {
   transition: all ease 0.5s;
   cursor: pointer;
+}
+
+@keyframes image {
+  from {
+    filter: blur(100px);
+  }
+
+  to {
+    filter: blur(0px);
+  }
 }

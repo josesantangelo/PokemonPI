@@ -28,7 +28,6 @@ export default function Pokemons() {
     },
   ];
   const findByType = async (type1, type2) => {
-    debugger;
     if (!type2) {
       let filtered = pokemonsOriginal.filter(
         (pokemon) =>

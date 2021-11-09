@@ -1,5 +1,5 @@
 import s from "./pokemon.module.css";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { detailedPokemon } from "../../store/actions/actions";
 import { useDispatch } from "react-redux";
 

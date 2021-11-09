@@ -106,9 +106,9 @@ export default function Filters() {
         alert("unknown filter!");
         break;
     }
-
     //Al mantener length, no impacta cambio en la posicion de memoria
     //con Object.assign creo una nueva posicion.
+    //usar un useState muleto
     dispatch(getPokemons(Object.assign([], result)));
     dispatch(setSelectedPage(1));
   };

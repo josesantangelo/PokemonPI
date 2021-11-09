@@ -2,6 +2,9 @@
   font-family: "font_welcome";
   src: url("../../utils/fonts/font_welcome.ttf") format("truetype");
 }
+/* body {
+  background: none;
+} */
 .landing {
   display: flex;
   align-items: flex-end;
