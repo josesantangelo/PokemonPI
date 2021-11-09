@@ -8,6 +8,8 @@ import {
   sorterWeakest,
   sorterStrongest,
 } from "../../utils/functions.js";
+import { useEffect } from "react";
+
 export default function Filters() {
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
   const pokemonState = useSelector((state) => state.pokemons);
@@ -24,6 +26,12 @@ export default function Filters() {
   let selectOrder = document.getElementById("OrderSelect");
   let selectOrigin = document.getElementById("orderOrigin");
   let selectType = document.getElementById("selectType");
+
+  // useEffect(() => {
+  //   return () => {
+  //     clearFilters();
+  //   };
+  // }, []);
 
   const apiOrDB = (arr, value) => {
     let filtered;
@@ -50,14 +58,10 @@ export default function Filters() {
 
     switch (value) {
       case "originAPI":
-        pokemonState
-          ? (result = apiOrDB(pokemonState, "api"))
-          : (result = apiOrDB(pokemonsOriginal, "api"));
+        result = apiOrDB(pokemonsOriginal, "api");
         break;
       case "originDB":
-        pokemonState
-          ? (result = apiOrDB(pokemonState, "DB"))
-          : (result = apiOrDB(pokemonsOriginal, "DB"));
+        result = apiOrDB(pokemonsOriginal, "DB");
         break;
       case "weakest":
         pokemonState

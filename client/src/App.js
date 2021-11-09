@@ -23,6 +23,12 @@ function App() {
       <Route exact path="/">
         <Welcome />
       </Route>
+      <Route exact path="/detail">
+        <Detail />
+      </Route>
+      <Route exact path="/form">
+        <Form />
+      </Route>
       <Route exact path="/home">
         <main>
           <Header />

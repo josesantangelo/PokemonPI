@@ -65,7 +65,7 @@ export function getExactPokemon(value) {
         `http://localhost:3001/pokemons?name=${value}`
       );
       arr.push(exactPokemons.data);
-      console.log("llego!", exactPokemons.data);
+      dispatch(setSelectedPage(1));
       dispatch({
         type: SEARCH,
         payload: arr,

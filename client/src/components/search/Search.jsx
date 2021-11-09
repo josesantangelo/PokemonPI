@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getExactPokemon } from "../../store/actions/actions.js";
+import {
+  getExactPokemon,
+  getPokemons,
+  setSelectedPage,
+} from "../../store/actions/actions.js";
 import s from "./search.module.css";
 import image from "../../utils/img/pokebola.svg";
 //tiene que tomar el input, traer la ruta ...api.../input, y devolver el resultado a pokemons.
@@ -8,14 +12,23 @@ import image from "../../utils/img/pokebola.svg";
 export default function Search() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  let selectOrder = document.getElementById("OrderSelect");
+  let selectOrigin = document.getElementById("orderOrigin");
+  let selectType = document.getElementById("selectType");
+
   let onSubmit = (e) => {
     e.preventDefault();
     if (search !== "") {
-      dispatch(getExactPokemon(search));
-      setSearch("");
+      dispatch(getPokemons([]));
+      setTimeout(() => {
+        dispatch(getExactPokemon(search));
+        setSearch("");
+      }, 1000);
     }
 
-    console.log(search);
+    selectOrder.value = "0";
+    selectOrigin.value = "0";
+    selectType.value = "0";
   };
 
   let onChange = (e) => {
