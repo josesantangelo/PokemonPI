@@ -51,6 +51,10 @@ export default function Filters() {
       filtered = arr.filter((element) => element.id.length > 5);
     }
 
+    if (value === "all") {
+      filtered = arr.filter((element) => element.id);
+    }
+
     return filtered.length ? filtered : empty;
   };
 
@@ -80,6 +84,13 @@ export default function Filters() {
           : alert("use original");
 
         break;
+      case "originAll":
+        pokemonState
+          ? (resultOrigin = apiOrDB(pokemonState, "all"))
+          : alert("use original");
+
+        break;
+
       case "weakest":
         pokemonsByOrigin.length
           ? (resultOrigin = pokemonsByOrigin.sort(sorterWeakest))
@@ -184,11 +195,15 @@ export default function Filters() {
           defaultValue="0"
         >
           <option disabled value="0" className={s.button}></option>
+
           <option value="originAPI" className={s.button}>
             Pokemons API
           </option>
           <option value="originDB" className={s.button}>
             Pokemons DB
+          </option>
+          <option value="originAll" className={s.button}>
+            Todos
           </option>
         </select>
       </div>
