@@ -86,6 +86,7 @@ pokemons.get("/:id", async (req, res, next) => {
     }
   }
 });
+
 pokemons.post("/", async (req, res, next) => {
   const {
     name,
