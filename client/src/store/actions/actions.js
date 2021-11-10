@@ -75,14 +75,16 @@ export function getExactPokemon(value) {
           payload: arr,
         });
       } else {
+        arr.push({
+          name: "No existe",
+          types: [{ name: " " }],
+          id: "0",
+          img: "https://svgsilh.com/svg_v2/1574006.svg",
+        });
+        dispatch(setSelectedPage(1));
         dispatch({
           type: SEARCH,
-          payload: {
-            name: "",
-            types: [{ name: " " }],
-            id: "",
-            img: "https://svgsilh.com/svg_v2/1574006.svg",
-          },
+          payload: arr,
         });
       }
     } catch (error) {
@@ -90,6 +92,20 @@ export function getExactPokemon(value) {
     }
   };
 }
+
+// dispatch({
+//   data: [
+//     {
+//       type: SEARCH,
+//       payload: {
+//         name: "",
+//         types: [{ name: " " }],
+//         id: "",
+//         img: "https://svgsilh.com/svg_v2/1574006.svg",
+//       },
+//     },
+//   ],
+// });
 
 export function setSelectedPage(value) {
   return function (dispatch) {
