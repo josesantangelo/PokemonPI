@@ -52,7 +52,7 @@ const Form = () => {
       }
     }
   };
-  console.log("load", loading);
+
   const onChange = (e) => {
     const { value, name, type } = e.target;
 
@@ -82,7 +82,6 @@ const Form = () => {
       `http://localhost:3001/pokemons?name=${value.toLowerCase()}`
     );
     let name = poke.data.name;
-    console.log("name", name);
 
     if (name) {
       setError({
@@ -134,8 +133,14 @@ const Form = () => {
           ) : null}
 
           <label> Type 1:</label>
-          <select type="number" name="type1" id="" onChange={onChange}>
-            <option value="" selected disabled></option>
+          <select
+            type="number"
+            name="type1"
+            id=""
+            defaultValue=""
+            onChange={onChange}
+          >
+            <option value="" disabled></option>
             {sortedTypes.map((element) => {
               return <option value={element.id_api}>{element.name}</option>;
             })}
@@ -147,8 +152,14 @@ const Form = () => {
           )}
 
           <label>Type 2:</label>
-          <select type="number" name="type2" id="" onChange={onChange}>
-            <option value="" selected disabled></option>
+          <select
+            type="number"
+            defaultValue=""
+            name="type2"
+            id=""
+            onChange={onChange}
+          >
+            <option value=""></option>
             {sortedTypes.map((element) => {
               return <option value={element.id_api}>{element.name}</option>;
             })}
