@@ -48,7 +48,7 @@ export default function Search() {
           onChange={onChange}
           autoFocus
           onSubmit={(e) => (e.target.value = "")}
-          autoComplete="false"
+          autoComplete="off"
         />
         <button type="submit" value="O" className={s.buttonSearch}>
           <img src={image} alt="O" />
