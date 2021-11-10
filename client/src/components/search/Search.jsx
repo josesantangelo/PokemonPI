@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  getExactPokemon,
-  getPokemons,
-  setSelectedPage,
-} from "../../store/actions/actions.js";
+import { getExactPokemon, getPokemons } from "../../store/actions/actions.js";
 import s from "./search.module.css";
 import image from "../../utils/img/pokebola.svg";
 //tiene que tomar el input, traer la ruta ...api.../input, y devolver el resultado a pokemons.

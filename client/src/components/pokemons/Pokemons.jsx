@@ -6,8 +6,7 @@ import {
   getPokemonsOriginal,
 } from "../../store/actions/actions";
 import Pokemon from "../pokemon/Pokemon.jsx";
-import charmander from "../../utils/img/charmander.gif";
-import gif2 from "../../utils/img/gif2.gif";
+
 import pikachu from "../../utils/img/pikachu.gif";
 import s from "./pokemons.module.css";
 export default function Pokemons() {
@@ -39,7 +38,6 @@ export default function Pokemons() {
 
   let pokemonList = pokemons.slice(selectedPage * 12 - 12, selectedPage * 12);
 
-  let loading = "let loading...";
   //__________________________________________________________________________________
   return (
     <>

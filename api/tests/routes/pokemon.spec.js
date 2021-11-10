@@ -1,8 +1,8 @@
 const request = require("supertest");
 const app = require("../../src/app.js");
-const { Pokemon } = require("../../src/db.js");
+// const { Pokemon } = require("../../src/db.js");
 describe("POKEMONS API", () => {
-  beforeEach(() => Pokemon.sync({ force: true }));
+  // beforeEach(() => Pokemon.sync({ force: true }));
 
   it("GET /pokemons --> objects array, with name, types and id ", () => {
     return request(app)
@@ -63,7 +63,7 @@ describe("POKEMONS API", () => {
         );
       });
   });
-  
+
   it("GET /pokemons/:id --> null if invalid ID", () => {
     return request(app)
       .get("/pokemons/900")

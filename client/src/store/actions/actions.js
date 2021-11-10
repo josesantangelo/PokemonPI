@@ -70,9 +70,7 @@ export function getExactPokemon(value) {
         type: SEARCH,
         payload: arr,
       });
-      console.log("listo");
     } catch (error) {
-      console.log("error!");
       dispatch({
         type: SEARCH,
         payload: [

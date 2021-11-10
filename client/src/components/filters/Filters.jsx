@@ -27,7 +27,7 @@ export default function Filters() {
   let selectOrigin = document.getElementById("orderOrigin");
   let selectType = document.getElementById("selectType");
   let search = document.getElementById("searchBar");
-  console.log("search desde filter", search);
+
   useEffect(() => {
     return () => {
       dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
@@ -129,15 +129,10 @@ export default function Filters() {
           className={s.buttons}
           id="OrderSelect"
           onChange={(e) => selecter(e.target.value)}
+          defaultValue="0"
         >
           {/* //CHEQUEAR QUE ANDEN!!! */}
-          <option
-            selected
-            disabled
-            id="zero"
-            value="0"
-            className={s.button}
-          ></option>
+          <option disabled id="zero" value="0" className={s.button}></option>
           <option value="A_Z" className={s.button}>
             Alfabetico A-Z
           </option>
@@ -164,8 +159,9 @@ export default function Filters() {
           className={s.buttons}
           onChange={(e) => selecter(e.target.value)}
           id="orderOrigin"
+          defaultValue="0"
         >
-          <option selected disabled value="0" className={s.button}></option>
+          <option disabled value="0" className={s.button}></option>
           <option value="originAPI" className={s.button}>
             Pokemons API
           </option>

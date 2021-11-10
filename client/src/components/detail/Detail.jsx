@@ -16,7 +16,7 @@ export default function Detail() {
     "https://thumbs.gfycat.com/FaithfulShrillFairyfly-size_restricted.gif";
 
   let mapTypes = detailedPoke?.types?.map((element) => element.name);
-  console.log("poke", detailedPoke);
+
   return (
     <>
       {!detailedPoke && (

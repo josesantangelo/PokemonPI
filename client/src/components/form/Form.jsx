@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import back from "../../utils/img/back.png";
 import s from "./form.module.css";
-
+import { alphabeticOrder } from "../../utils/functions.js";
 const Form = () => {
   const types = useSelector((state) => state.types);
   let defaultImage =
@@ -35,10 +35,13 @@ const Form = () => {
   });
   const createPokemon = async (e) => {
     e.preventDefault();
-    console.log("entre al create");
-    await axios
-      .post("http://localhost:3001/pokemons", form)
-      .then(alert("exito!"));
+    try {
+      await axios
+        .post("http://localhost:3001/pokemons", form)
+        .then(alert("exito!"));
+    } catch (error) {
+      alert("error!");
+    }
   };
 
   const onChange = (e) => {
@@ -81,14 +84,7 @@ const Form = () => {
       });
     }
   };
-  function sorterOne(a, b) {
-    if (Number(a.id_api) < Number(b.id_api)) {
-      return -1;
-    } else {
-      return 1;
-    }
-  }
-
+  let sortedTypes = alphabeticOrder(types, "a");
   return (
     <div className={s.container}>
       <div className={s.return}>
@@ -126,7 +122,7 @@ const Form = () => {
           <label> Type 1:</label>
           <select type="number" name="type1" id="" onChange={onChange}>
             <option value="" selected disabled></option>
-            {types.sort(sorterOne).map((element) => {
+            {sortedTypes.map((element) => {
               return <option value={element.id_api}>{element.name}</option>;
             })}
           </select>
@@ -139,7 +135,7 @@ const Form = () => {
           <label>Type 2:</label>
           <select type="number" name="type2" id="" onChange={onChange}>
             <option value="" selected disabled></option>
-            {types.map((element) => {
+            {sortedTypes.map((element) => {
               return <option value={element.id_api}>{element.name}</option>;
             })}
           </select>
