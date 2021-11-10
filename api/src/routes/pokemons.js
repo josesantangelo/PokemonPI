@@ -5,12 +5,10 @@ const { API } = require("../utils/constants.js");
 const { PokemonDetail, PokemonItem } = require("../utils/classes.js");
 const { getPokemon } = require("../utils/functions.js");
 const pokemons = Router();
-
 pokemons.get("/", async (req, res, next) => {
   const { name } = req.query;
 
   let pokemon;
-
   if (name) {
     pokemon = await getPokemon(API, PokemonItem, name);
     console.log("poke de api", pokemon);

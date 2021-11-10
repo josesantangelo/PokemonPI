@@ -67,7 +67,7 @@ const Form = () => {
 
   const onChangeStat = (e) => {
     const { value, name, type } = e.target;
-    if (value > 0 && value < 100) {
+    if (value > 0 && value <= 100) {
       setForm({
         ...form,
         [name]: type === "number" ? Number(value) : value,
