@@ -35,7 +35,7 @@ export default function Pokemons() {
     let filtered;
     //Uso pokemons y no pokemonsOrigins, para no "achicar" dicho estado, y poder refiltrar por tipo varias veces
 
-    if (pokemonsByOrigin.length) {
+    if (pokemonsByOrigin.length && pokemons.length > 1) {
       filtered = pokemons.filter(
         (pokemon) =>
           (pokemon.types[0]?.name === type1 ||
