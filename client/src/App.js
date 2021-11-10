@@ -23,7 +23,7 @@ function App() {
       <Route exact path="/">
         <Welcome />
       </Route>
-      <Route exact path="/detail">
+      <Route exact path={`/detail/:id`}>
         <Detail />
       </Route>
       <Route exact path="/form">

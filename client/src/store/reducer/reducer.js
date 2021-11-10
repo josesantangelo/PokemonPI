@@ -6,13 +6,14 @@ import {
   SET_PAGES,
   SET_SELECTEDPAGE,
   DETAILED_POKEMON,
+  SET_ID,
 } from "../actions/action_types.js";
 
 const initialState = {
   pokemonsOriginal: [], //primera llamada no se toca mas
   pokemons: [], //copia, dependiendo de los filtrados ordenamientos
   types: [],
-
+  id: null,
   detailedPokemon: null,
   pages: [],
   selectedPage: 1,
@@ -54,9 +55,16 @@ export default function reducer(state = initialState, action) {
       };
 
     case DETAILED_POKEMON: {
+      console.log(action.payload);
       return {
         ...state,
         detailedPokemon: action.payload,
+      };
+    }
+    case SET_ID: {
+      return {
+        ...state,
+        id: action.payload,
       };
     }
 

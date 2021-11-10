@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 import { detailedPokemon } from "../../store/actions/actions";
 import s from "./detail.module.css";
 import back from "../../utils/img/back.png";
+import { useParams } from "react-router";
+
 export default function Detail() {
   let dispatch = useDispatch();
   const detailedPoke = useSelector((state) => state.detailedPokemon);
+  const { id } = useParams();
+
+  useEffect(() => {
+    dispatch(detailedPokemon(id));
+  }, []);
+
   useEffect(() => {
     return () => {
       dispatch(detailedPokemon(null));

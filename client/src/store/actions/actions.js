@@ -6,6 +6,7 @@ import {
   SET_PAGES,
   SET_SELECTEDPAGE,
   DETAILED_POKEMON,
+  SET_ID,
 } from "./action_types.js";
 import axios from "axios";
 
@@ -76,14 +77,12 @@ export function getExactPokemon(value) {
       } else {
         dispatch({
           type: SEARCH,
-          payload: [
-            {
-              name: "No existe",
-              types: [{ name: " " }],
-              id: "",
-              img: "https://svgsilh.com/svg_v2/1574006.svg",
-            },
-          ],
+          payload: {
+            name: "",
+            types: [{ name: " " }],
+            id: "",
+            img: "https://svgsilh.com/svg_v2/1574006.svg",
+          },
         });
       }
     } catch (error) {
@@ -110,11 +109,31 @@ export function detailedPokemon(value) {
       });
     } else {
       let detailed = await axios.get(`http://localhost:3001/pokemons/${value}`);
+
       try {
-        dispatch({
-          type: DETAILED_POKEMON,
-          payload: detailed.data,
-        });
+        if (detailed.data) {
+          console.log(detailed.data);
+          dispatch({
+            type: DETAILED_POKEMON,
+            payload: detailed.data,
+          });
+        } else {
+          dispatch({
+            type: DETAILED_POKEMON,
+            payload: {
+              name: "No existe",
+              types: [""],
+              id: "0",
+              img: "https://svgsilh.com/svg_v2/1574006.svg",
+              hp: "0",
+              attack: "0",
+              defense: "0",
+              speed: "0",
+              height: "0",
+              weight: "0",
+            },
+          });
+        }
       } catch (error) {
         dispatch({
           type: SEARCH,
@@ -129,5 +148,14 @@ export function detailedPokemon(value) {
         });
       }
     }
+  };
+}
+
+export function setId(value) {
+  return function (dispatch) {
+    dispatch({
+      type: SET_ID,
+      payload: value,
+    });
   };
 }
