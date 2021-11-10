@@ -29,7 +29,6 @@ pokemons.get("/", async (req, res, next) => {
         next(error);
       }
     }
-
     if (pokemon) {
       res.json(pokemon);
     } else {

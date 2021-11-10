@@ -58,7 +58,7 @@ const Form = () => {
 
     setForm({
       ...form,
-      [name]: type === "number" ? Number(value) : value,
+      [name]: type === "number" ? Number(value) : value.toLowerCase(),
     });
   };
 
