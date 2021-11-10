@@ -33,8 +33,8 @@ function App() {
         <main>
           <Header />
           <aside>
-            <Filters />
             <AsydeTypes />
+            <Filters />
           </aside>
           <section>
             <div className="search">

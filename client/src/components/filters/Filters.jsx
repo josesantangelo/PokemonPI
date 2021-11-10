@@ -13,7 +13,7 @@ import {
   sorterStrongest,
 } from "../../utils/functions.js";
 import { useEffect } from "react";
-
+import pika from "../../utils/img/Detective_Pikachu.png";
 export default function Filters() {
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
   const pokemonState = useSelector((state) => state.pokemons);
@@ -148,14 +148,6 @@ export default function Filters() {
 
   return (
     <>
-      <button
-        className={s.buttonClear}
-        onClick={() => {
-          clearFilters();
-        }}
-      >
-        Limpiar filtros
-      </button>
       <div className={s.container}>
         <h5 className={s.title}>Ordenar:</h5>
         <select
@@ -207,6 +199,15 @@ export default function Filters() {
           </option>
         </select>
       </div>
+      <button
+        className={s.buttonClear}
+        onClick={() => {
+          clearFilters();
+        }}
+      >
+        Limpiar filtros
+      </button>
+      <img src={pika} alt="pikachu" />
     </>
   );
 }
