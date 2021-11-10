@@ -7,6 +7,7 @@ import {
   SET_SELECTEDPAGE,
   DETAILED_POKEMON,
   SET_ID,
+  GET_POKEMONSORIGIN,
 } from "./action_types.js";
 import axios from "axios";
 
@@ -27,6 +28,15 @@ export function getPokemons(value) {
   return function (dispatch) {
     dispatch({
       type: GET_POKEMONS,
+      payload: value,
+    });
+  };
+}
+
+export function getPokemonsOrigin(value) {
+  return function (dispatch) {
+    dispatch({
+      type: GET_POKEMONSORIGIN,
       payload: value,
     });
   };

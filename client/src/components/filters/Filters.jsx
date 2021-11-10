@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemons, setSelectedPage } from "../../store/actions/actions";
+import {
+  getPokemons,
+  getPokemonsOrigin,
+  setSelectedPage,
+} from "../../store/actions/actions";
 import s from "./filters.module.css";
 import {
   alphabeticOrder,
@@ -13,6 +17,8 @@ import { useEffect } from "react";
 export default function Filters() {
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
   const pokemonState = useSelector((state) => state.pokemons);
+  const pokemonsByOrigin = useSelector((state) => state.pokemonsByOrigin);
+  console.log("origin", pokemonsByOrigin);
   let empty = [
     {
       name: `El equipo Rocket estuvo aqui!`,
@@ -31,6 +37,7 @@ export default function Filters() {
   useEffect(() => {
     return () => {
       dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
+      dispatch(getPokemonsOrigin([]));
       dispatch(setSelectedPage(1));
     };
   }, []);
@@ -49,6 +56,7 @@ export default function Filters() {
 
   const clearFilters = () => {
     dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
+    dispatch(getPokemonsOrigin([]));
     dispatch(setSelectedPage(1));
     selectOrder.value = "0";
     selectOrigin.value = "0";
@@ -58,54 +66,55 @@ export default function Filters() {
 
   const selecter = async (value) => {
     let result;
-
+    let resultOrigin;
     switch (value) {
       case "originAPI":
         pokemonState
-          ? (result = apiOrDB(pokemonState, "api"))
-          : (result = apiOrDB(pokemonsOriginal, "api"));
+          ? (resultOrigin = apiOrDB(pokemonState, "api"))
+          : alert("use original");
 
         break;
       case "originDB":
         pokemonState
-          ? (result = apiOrDB(pokemonState, "DB"))
-          : (result = apiOrDB(pokemonsOriginal, "DB"));
+          ? (resultOrigin = apiOrDB(pokemonState, "DB"))
+          : alert("use original");
 
         break;
       case "weakest":
-        pokemonState
-          ? (result = pokemonState.sort(sorterWeakest))
-          : (result = pokemonsOriginal.sort(sorterWeakest));
+        pokemonsByOrigin.length
+          ? (resultOrigin = pokemonsByOrigin.sort(sorterWeakest))
+          : (result = pokemonState.sort(sorterWeakest));
 
         break;
       case "strongest":
-        pokemonState
-          ? (result = pokemonState.sort(sorterStrongest))
-          : (result = pokemonsOriginal.sort(sorterStrongest));
+        pokemonsByOrigin.length
+          ? (resultOrigin = pokemonsByOrigin.sort(sorterStrongest))
+          : (result = pokemonState.sort(sorterStrongest));
 
         break;
       case "idOne":
-        pokemonState
-          ? (result = pokemonState.sort(sorterOne))
-          : (result = pokemonsOriginal.sort(sorterOne));
+        pokemonsByOrigin.length
+          ? (resultOrigin = pokemonsByOrigin.sort(sorterOne))
+          : (result = pokemonState.sort(sorterOne));
 
         break;
       case "idForty":
-        pokemonState
-          ? (result = pokemonState.sort(sorterForty))
-          : (result = pokemonsOriginal.sort(sorterForty));
+        pokemonsByOrigin.length
+          ? (resultOrigin = pokemonsByOrigin.sort(sorterForty))
+          : (result = pokemonState.sort(sorterForty));
 
         break;
       case "A_Z":
-        pokemonState
-          ? (result = alphabeticOrder(pokemonState, "a"))
-          : (result = alphabeticOrder(pokemonsOriginal, "a"));
+        pokemonsByOrigin.length
+          ? (resultOrigin = alphabeticOrder(pokemonsByOrigin, "a"))
+          : (result = alphabeticOrder(pokemonState, "a"));
 
         break;
       case "Z_A":
-        pokemonState
-          ? (result = alphabeticOrder(pokemonState, "z"))
-          : (result = alphabeticOrder(pokemonsOriginal, "z"));
+        pokemonsByOrigin.length
+          ? (resultOrigin = alphabeticOrder(pokemonsByOrigin, "z"))
+          : (result = alphabeticOrder(pokemonState, "z"));
+
         break;
 
       default:
@@ -115,7 +124,14 @@ export default function Filters() {
     //Al mantener length, no impacta cambio en la posicion de memoria
     //con Object.assign creo una nueva posicion.
     //usar un useState muleto
-    dispatch(getPokemons(Object.assign([], result)));
+
+    if (resultOrigin) {
+      dispatch(getPokemonsOrigin(Object.assign([], resultOrigin)));
+    } else {
+      dispatch(getPokemons(Object.assign([], result)));
+      dispatch(getPokemonsOrigin([]));
+    }
+
     dispatch(setSelectedPage(1));
   };
 

@@ -1,5 +1,6 @@
 export const GET_POKEMONSORIGINAL = "GET_POKEMONSORIGINAL";
 export const GET_POKEMONS = "GET_POKEMONS";
+export const GET_POKEMONSORIGIN = "GET_POKEMONSORIGIN";
 export const GET_TYPES = "GET_TYPES";
 export const SEARCH = "SEARCH";
 export const SET_PAGES = "SET_PAGES";

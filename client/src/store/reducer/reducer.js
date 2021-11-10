@@ -7,11 +7,13 @@ import {
   SET_SELECTEDPAGE,
   DETAILED_POKEMON,
   SET_ID,
+  GET_POKEMONSORIGIN,
 } from "../actions/action_types.js";
 
 const initialState = {
   pokemonsOriginal: [], //primera llamada no se toca mas
   pokemons: [], //copia, dependiendo de los filtrados ordenamientos
+  pokemonsByOrigin: [], //tercer estado para poder realizar filtrados combinados tipo/origen
   types: [],
   id: null,
   detailedPokemon: null,
@@ -65,6 +67,12 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         id: action.payload,
+      };
+    }
+    case GET_POKEMONSORIGIN: {
+      return {
+        ...state,
+        pokemonsByOrigin: action.payload,
       };
     }
 

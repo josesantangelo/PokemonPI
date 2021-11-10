@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getTypes,
   getPokemons,
+  getPokemonsOrigin,
   setSelectedPage,
 } from "../../store/actions/actions";
 
@@ -12,7 +13,8 @@ import { alphabeticOrder } from "../../utils/functions.js";
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
   const pokemonsOriginal = useSelector((state) => state.pokemonsOriginal);
-
+  const pokemonsByOrigin = useSelector((state) => state.pokemonsByOrigin);
+  const pokemons = useSelector((state) => state.pokemons);
   let dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());
@@ -30,14 +32,31 @@ export default function Pokemons() {
   let sortedTypes = alphabeticOrder(types, "a");
 
   const findByType = async (type1) => {
-    let filtered = pokemonsOriginal.filter(
-      (pokemon) =>
-        pokemon.types[0]?.name === type1 || pokemon.types[1]?.name === type1
-    );
-    if (filtered.length) {
-      dispatch(getPokemons(filtered));
+    let filtered;
+    //Uso pokemons y no pokemonsOrigins, para no "achicar" dicho estado, y poder refiltrar por tipo varias veces
+
+    if (pokemonsByOrigin.length) {
+      filtered = pokemons.filter(
+        (pokemon) =>
+          (pokemon.types[0]?.name === type1 ||
+            pokemon.types[1]?.name === type1) &&
+          pokemon.id.length > 6
+      );
+      if (filtered.length) {
+        dispatch(getPokemonsOrigin(filtered));
+      } else {
+        dispatch(getPokemons(empty));
+      }
     } else {
-      dispatch(getPokemons(empty));
+      filtered = pokemonsOriginal.filter(
+        (pokemon) =>
+          pokemon.types[0]?.name === type1 || pokemon.types[1]?.name === type1
+      );
+      if (filtered.length) {
+        dispatch(getPokemons(filtered));
+      } else {
+        dispatch(getPokemons(empty));
+      }
     }
 
     dispatch(setSelectedPage(1));
