@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import back from "../../utils/img/back.png";
 import s from "./form.module.css";
 import { alphabeticOrder } from "../../utils/functions.js";
+import { useHistory } from "react-router-dom";
 const Form = () => {
   const types = useSelector((state) => state.types);
+  let history = useHistory();
   let defaultImage =
     "http://assets.stickpng.com/images/5a4613ddd099a2ad03f9c994.png";
   const [form, setForm] = useState({
@@ -46,7 +48,8 @@ const Form = () => {
       try {
         await axios
           .post("http://localhost:3001/pokemons", form)
-          .then(alert("exito!"));
+          .then(alert("exito!"))
+          .then(history.push("/home"));
       } catch (error) {
         alert("error!");
       }

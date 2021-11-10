@@ -61,10 +61,16 @@ export default function Filters() {
 
     switch (value) {
       case "originAPI":
-        result = apiOrDB(pokemonsOriginal, "api");
+        pokemonState
+          ? (result = apiOrDB(pokemonState, "api"))
+          : (result = apiOrDB(pokemonsOriginal, "api"));
+
         break;
       case "originDB":
-        result = apiOrDB(pokemonsOriginal, "DB");
+        pokemonState
+          ? (result = apiOrDB(pokemonState, "DB"))
+          : (result = apiOrDB(pokemonsOriginal, "DB"));
+
         break;
       case "weakest":
         pokemonState
