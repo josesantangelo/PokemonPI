@@ -60,28 +60,34 @@ export function getTypes() {
 export function getExactPokemon(value) {
   return async function (dispatch) {
     try {
+      console.log("value", value);
       let arr = [];
       let exactPokemons = await axios.get(
         `http://localhost:3001/pokemons?name=${value}`
       );
-      arr.push(exactPokemons.data);
-      dispatch(setSelectedPage(1));
-      dispatch({
-        type: SEARCH,
-        payload: arr,
-      });
+      console.log("data", exactPokemons.data);
+      if (exactPokemons.data) {
+        arr.push(exactPokemons.data);
+        dispatch(setSelectedPage(1));
+        dispatch({
+          type: SEARCH,
+          payload: arr,
+        });
+      } else {
+        dispatch({
+          type: SEARCH,
+          payload: [
+            {
+              name: "No existe",
+              types: [{ name: " " }],
+              id: "",
+              img: "https://svgsilh.com/svg_v2/1574006.svg",
+            },
+          ],
+        });
+      }
     } catch (error) {
-      dispatch({
-        type: SEARCH,
-        payload: [
-          {
-            name: "No existe",
-            types: [{ name: " " }],
-            id: "",
-            img: "https://svgsilh.com/svg_v2/1574006.svg",
-          },
-        ],
-      });
+      console.log(error);
     }
   };
 }

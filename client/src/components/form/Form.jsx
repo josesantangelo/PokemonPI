@@ -33,17 +33,26 @@ const Form = () => {
     type2: null,
     img: null,
   });
+  const [loading, setLoading] = useState(false);
+
   const createPokemon = async (e) => {
     e.preventDefault();
-    try {
-      await axios
-        .post("http://localhost:3001/pokemons", form)
-        .then(alert("exito!"));
-    } catch (error) {
-      alert("error!");
+    setLoading(true);
+    let check = await checkName(form.name);
+    setLoading(false);
+    if (check) {
+      return alert("Ese pokemon ya existe!");
+    } else {
+      try {
+        await axios
+          .post("http://localhost:3001/pokemons", form)
+          .then(alert("exito!"));
+      } catch (error) {
+        alert("error!");
+      }
     }
   };
-
+  console.log("load", loading);
   const onChange = (e) => {
     const { value, name, type } = e.target;
 
@@ -69,7 +78,9 @@ const Form = () => {
   };
 
   const checkName = async (value) => {
-    let poke = await axios.get(`http://localhost:3001/pokemons?name=${value}`);
+    let poke = await axios.get(
+      `http://localhost:3001/pokemons?name=${value.toLowerCase()}`
+    );
     let name = poke.data.name;
     console.log("name", name);
 
@@ -78,10 +89,13 @@ const Form = () => {
         ...error,
         name: `${poke.data.name} ya existe.`,
       });
-      return setForm({
+      setForm({
         ...form,
         name: "",
       });
+      return true;
+    } else {
+      return false;
     }
   };
   let sortedTypes = alphabeticOrder(types, "a");
@@ -245,31 +259,40 @@ const Form = () => {
             <span className={s.notErrorSpan}>Ok</span>
           )}
         </div>
-
-        <div className={s.submitTrue}>
-          {form.name !== "" &&
-          form.type1 &&
-          form.hp > 0 &&
-          form.attack > 0 &&
-          form.defense > 0 &&
-          form.speed > 0 &&
-          form.height > 0 &&
-          form.weight > 0 ? (
-            <input
-              className={s.submitTrue}
-              type="submit"
-              disabled={false}
-              value="Crear Pokemon!"
-            />
-          ) : (
-            <input
-              className={s.submitFalse}
-              type="submit"
-              disabled={true}
-              value="Crear Pokemon!"
-            />
-          )}
-        </div>
+        {!loading && (
+          <div className={s.submitTrue}>
+            {form.name !== "" &&
+            form.type1 &&
+            form.hp > 0 &&
+            form.attack > 0 &&
+            form.defense > 0 &&
+            form.speed > 0 &&
+            form.height > 0 &&
+            form.weight > 0 ? (
+              <input
+                className={s.submitTrue}
+                type="submit"
+                disabled={false}
+                value="Crear Pokemon!"
+              />
+            ) : (
+              <input
+                className={s.submitFalse}
+                type="submit"
+                disabled={true}
+                value="Crear Pokemon!"
+              />
+            )}
+          </div>
+        )}
+        {loading && (
+          <div class={s.ldsRing}>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        )}
       </form>
     </div>
   );

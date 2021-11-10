@@ -33,7 +33,9 @@ pokemons.get("/", async (req, res, next) => {
     if (pokemon) {
       res.json(pokemon);
     } else {
-      res.sendStatus(404);
+      //con 404 anda el search
+      //con null anda el form
+      res.send(null);
     }
   } else {
     let totalPokemonApi = [];
