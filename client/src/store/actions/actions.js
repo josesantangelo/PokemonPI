@@ -69,39 +69,45 @@ export function getTypes() {
 }
 
 export function getExactPokemon(value) {
-  return async function (dispatch) {
-    try {
-      console.log("value", value);
-      let arr = [];
-      let exactPokemons = await axios.get(
-        `http://localhost:3001/pokemons?name=${value}`
-      );
-      console.log("data", exactPokemons.data);
-      if (exactPokemons.data) {
-        arr.push(exactPokemons.data);
-        dispatch(setSelectedPage(1));
-        dispatch({
-          type: SEARCH,
-          payload: arr,
-        });
-      } else {
-        arr.push({
-          name: "No existe",
-          types: [{ name: " " }],
-          id: "0",
-          img: "https://svgsilh.com/svg_v2/1574006.svg",
-        });
-        dispatch(setSelectedPage(1));
-        dispatch({
-          type: SEARCH,
-          payload: arr,
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  return function (dispatch) {
+    let arr = [];
   };
 }
+
+// export function getExactPokemon(value) {
+//   return async function (dispatch) {
+//     try {
+//       console.log("value", value);
+//       let arr = [];
+//       let exactPokemons = await axios.get(
+//         `http://localhost:3001/pokemons?name=${value}`
+//       );
+//       console.log("data", exactPokemons.data);
+//       if (exactPokemons.data) {
+//         arr.push(exactPokemons.data);
+//         dispatch(setSelectedPage(1));
+//         dispatch({
+//           type: SEARCH,
+//           payload: arr,
+//         });
+//       } else {
+//         arr.push({
+//           name: "No existe",
+//           types: [{ name: " " }],
+//           id: "0",
+//           img: "https://svgsilh.com/svg_v2/1574006.svg",
+//         });
+//         dispatch(setSelectedPage(1));
+//         dispatch({
+//           type: SEARCH,
+//           payload: arr,
+//         });
+//       }
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+// }
 
 // dispatch({
 //   data: [

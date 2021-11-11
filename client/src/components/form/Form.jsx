@@ -166,7 +166,12 @@ const Form = () => {
               return <option value={element.id_api}>{element.name}</option>;
             })}
           </select>
-          <span className={s.notErrorSpan}>Ok</span>
+
+          {form.type1 === form.type2 && form.type2 !== "" ? (
+            <span>Types cant be equals</span>
+          ) : (
+            <span className={s.notErrorSpan}>Ok</span>
+          )}
           <label>Url Image:</label>
           <input
             type="url"
@@ -282,6 +287,7 @@ const Form = () => {
           <div className={s.submitTrue}>
             {form.name !== "" &&
             form.type1 &&
+            form.type1 !== form.type2 &&
             form.hp > 0 &&
             form.attack > 0 &&
             form.defense > 0 &&
