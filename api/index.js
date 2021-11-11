@@ -34,7 +34,6 @@ const { conn, Type } = require("./src/db.js");
 // };
 
 const addTypes = async () => {
-  console.log("inicie");
   try {
     const PokemonTypes = axios.get("https://pokeapi.co/api/v2/type");
 
@@ -46,7 +45,7 @@ const addTypes = async () => {
 
     TypesCollection = urlTypes.map(async (element) => {
       let dataUrl = await axios.get(element);
-      // console.log(dataUrl.data.id);
+
       let idUrl = await dataUrl.data.id;
       let nameUrl = await dataUrl.data.name;
 

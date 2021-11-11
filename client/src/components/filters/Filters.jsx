@@ -11,6 +11,7 @@ import {
   sorterForty,
   sorterWeakest,
   sorterStrongest,
+  apiOrDB,
 } from "../../utils/functions.js";
 import { useEffect } from "react";
 import pika from "../../utils/img/Detective_Pikachu.png";
@@ -42,22 +43,6 @@ export default function Filters() {
     };
   }, []);
 
-  const apiOrDB = (arr, value) => {
-    let filtered;
-    if (value === "api") {
-      filtered = arr.filter((element) => typeof element.id === "number");
-    }
-    if (value === "DB") {
-      filtered = arr.filter((element) => element.id.length > 5);
-    }
-
-    if (value === "all") {
-      filtered = arr.filter((element) => element.id);
-    }
-
-    return filtered.length ? filtered : empty;
-  };
-
   const clearFilters = () => {
     dispatch(getPokemons(pokemonsOriginal.sort(sorterOne)));
     dispatch(getPokemonsOrigin([]));
@@ -74,19 +59,19 @@ export default function Filters() {
     switch (value) {
       case "originAPI":
         pokemonState
-          ? (resultOrigin = apiOrDB(pokemonState, "api"))
+          ? (resultOrigin = apiOrDB(pokemonState, "api", empty))
           : alert("use original");
 
         break;
       case "originDB":
         pokemonState
-          ? (resultOrigin = apiOrDB(pokemonState, "DB"))
+          ? (resultOrigin = apiOrDB(pokemonState, "DB", empty))
           : alert("use original");
 
         break;
       case "originAll":
         pokemonState
-          ? (resultOrigin = apiOrDB(pokemonState, "all"))
+          ? (resultOrigin = apiOrDB(pokemonState, "all", empty))
           : alert("use original");
 
         break;

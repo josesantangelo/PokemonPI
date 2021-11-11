@@ -64,20 +64,3 @@ export default function Detail() {
     </>
   );
 }
-
-//     <div className={s.container}>
-//
-
-//   <div className={s.pokemon}>
-//     <div className={s.general}>
-//
-//       <h2>{detailedPoke?.id}</h2>
-//       <img src={detailedPoke?.img} alt="Poke" />
-//
-//     </div>
-
-//     <div className={s.stats}>
-
-//     </div>
-//   </div>
-// </div>

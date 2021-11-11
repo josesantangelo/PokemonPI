@@ -91,32 +91,6 @@ export default function Pokemons() {
               ></Pokemon>
             );
           })}
-
-      {/* {pokemonList &&
-        !pokemonsByOrigin.length &&
-        pokemonList.map((pokemon) => {
-          return (
-            <Pokemon
-              name={pokemon.name}
-              types={pokemon.types}
-              key={pokemon.id}
-              id={pokemon.id}
-              img={pokemon.img}
-            ></Pokemon>
-          );
-        })}
-      {pokemonsByOrigin.length &&
-        pokemonsByOrigin.map((pokemon) => {
-          return (
-            <Pokemon
-              name={pokemon.name}
-              types={pokemon.types}
-              key={pokemon.id}
-              id={pokemon.id}
-              img={pokemon.img}
-            ></Pokemon>
-          );
-        })} */}
     </>
   );
 }

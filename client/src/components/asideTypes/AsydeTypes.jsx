@@ -45,7 +45,8 @@ export default function Pokemons() {
       if (filtered.length) {
         dispatch(getPokemonsOrigin(filtered));
       } else {
-        dispatch(getPokemons(empty));
+        dispatch(getPokemonsOrigin(empty));
+        // dispatch(getPokemons(empty));
       }
     } else {
       filtered = pokemonsOriginal.filter(

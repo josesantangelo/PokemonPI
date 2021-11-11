@@ -5,10 +5,10 @@ import { Link } from "react-router-dom";
 import back from "../../utils/img/back.png";
 import s from "./form.module.css";
 import { alphabeticOrder } from "../../utils/functions.js";
-import { useHistory } from "react-router-dom";
+
 const Form = () => {
   const types = useSelector((state) => state.types);
-  let history = useHistory();
+
   let defaultImage =
     "http://assets.stickpng.com/images/5a4613ddd099a2ad03f9c994.png";
   const [form, setForm] = useState({
@@ -48,8 +48,7 @@ const Form = () => {
       try {
         await axios
           .post("http://localhost:3001/pokemons", form)
-          .then(alert("exito!"))
-          .then(history.push("/home"));
+          .then(alert("exito!"));
       } catch (error) {
         alert("error!");
       }
@@ -57,11 +56,11 @@ const Form = () => {
   };
 
   const onChange = (e) => {
-    const { value, name, type } = e.target;
+    const { value, name } = e.target;
 
     setForm({
       ...form,
-      [name]: type === "number" ? Number(value) : value.toLowerCase(),
+      [name]: value.toLowerCase(),
     });
   };
 
@@ -186,6 +185,7 @@ const Form = () => {
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="hp"
@@ -195,12 +195,13 @@ const Form = () => {
           {error.hp && (form.hp <= 0 || form.hp > 100) ? (
             <span className={s.errorSpan}>{error.hp}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
           <label>Attack: </label>
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="attack"
@@ -210,12 +211,13 @@ const Form = () => {
           {error.attack && (form.attack <= 0 || form.attack > 100) ? (
             <span className={s.errorSpan}>{error.attack}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
           <label>Defense: </label>
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="defense"
@@ -225,12 +227,13 @@ const Form = () => {
           {error.defense && (form.defense <= 0 || form.defense > 100) ? (
             <span className={s.errorSpan}>{error.defense}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
           <label>Speed: </label>
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="speed"
@@ -240,12 +243,13 @@ const Form = () => {
           {error.speed && (form.speed <= 0 || form.speed > 100) ? (
             <span className={s.errorSpan}>{error.speed}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
           <label>Height: </label>
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="height"
@@ -255,12 +259,13 @@ const Form = () => {
           {error.height && (form.height <= 0 || form.height > 100) ? (
             <span className={s.errorSpan}>{error.height}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
           <label>Weight: </label>
           <input
             className={s.input}
             type="number"
+            autoComplete="off"
             min="1"
             max="100"
             name="weight"
@@ -270,7 +275,7 @@ const Form = () => {
           {error.weight && (form.weight <= 0 || form.weight > 100) ? (
             <span className={s.errorSpan}>{error.weight}</span>
           ) : (
-            <span className={s.notErrorSpan}>Ok</span>
+            <span className={s.notErrorSpan}>Min: 0 / Max: 100</span>
           )}
         </div>
         {!loading && (
@@ -282,7 +287,13 @@ const Form = () => {
             form.defense > 0 &&
             form.speed > 0 &&
             form.height > 0 &&
-            form.weight > 0 ? (
+            form.weight > 0 &&
+            form.hp <= 100 &&
+            form.attack <= 100 &&
+            form.defense <= 100 &&
+            form.speed <= 100 &&
+            form.height <= 100 &&
+            form.weight <= 100 ? (
               <input
                 className={s.submitTrue}
                 type="submit"
@@ -313,126 +324,3 @@ const Form = () => {
 };
 
 export default Form;
-
-// <div className={s.container}>
-//   <div className={s.return}>
-//     <Link to="/home">
-//       <img src={back} alt="" />
-//     </Link>
-//   </div>
-
-//   <form className={s.card} onSubmit={createPokemon}>
-//     <div className={s.form}>
-//       <div className={s.label}>
-//         <label>Name: </label>
-//         <label> Type 1</label>
-//         <label>Type 2</label>
-//         <label>Url Image</label>
-//         <label>Hp: </label>
-//         <label>Attack: </label>
-//         <label>Defense: </label>
-//         <label>Speed: </label>
-//         <label>Height: </label>
-//         <label>Weight: </label>
-//       </div>
-//       <div className={s.inputs}>
-// <input
-//   className={s.input}
-//   type="text"
-//   name="name"
-//   value={form.name}
-//   autoFocus
-//   autoComplete="off"
-//   onChange={onChange}
-//   onBlur={() => checkName(form.name)}
-// />
-// <select type="number" name="type1" id="" onChange={onChange}>
-//   {/* <option value="" selected disabled></option> */}
-//   {types.sort(sorterOne).map((element) => {
-//     return <option value={element.id_api}>{element.name}</option>;
-//   })}
-// </select>
-// <select type="number" name="type2" id="" onChange={onChange}>
-//   <option value="" selected disabled></option>
-//   {types.map((element) => {
-//     return <option value={element.id_api}>{element.name}</option>;
-//   })}
-// </select>
-// <input
-//   type="url"
-//   name="img"
-//   onChange={onChange}
-//   autoComplete="off"
-//   // value={form.img}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="hp"
-//   value={form.hp}
-//   onChange={onChange}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="attack"
-//   value={form.attack}
-//   onChange={onChange}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="defense"
-//   value={form.defense}
-//   onChange={onChange}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="speed"
-//   value={form.speed}
-//   onChange={onChange}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="height"
-//   value={form.height}
-//   onChange={onChange}
-// />
-// <input
-//   className={s.input}
-//   type="number"
-//   min="1"
-//   max="100"
-//   name="weight"
-//   value={form.weight}
-//   onChange={onChange}
-// />
-//       </div>
-//     </div>
-//     <div className={s.error}>
-//       {error.name ? <span>{error.name}</span> : null}
-//       {!form.type1 ? <span>Elegi un tipo!</span> : null}
-//       {!form.type2 ? <span>Elegi un tipo! </span> : null}
-//       {!form.image ? <span>Elegi una imagen!</span> : null}
-//     </div>
-//     <div className={s.submit}>
-//       {form.name !== "" && form.type1 ? (
-//         <input type="submit" disabled={false} />
-//       ) : (
-//         <input type="submit" disabled={true} />
-//       )}
-//     </div>
-//   </form>
-// </div>

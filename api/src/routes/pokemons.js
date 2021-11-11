@@ -11,7 +11,7 @@ pokemons.get("/", async (req, res, next) => {
   let pokemon;
   if (name) {
     pokemon = await getPokemon(API, PokemonItem, name);
-    console.log("poke de api", pokemon);
+
     if (!pokemon) {
       try {
         pokemon = await Pokemon.findOne({
@@ -22,7 +22,6 @@ pokemons.get("/", async (req, res, next) => {
             model: Type,
           },
         });
-        console.log("poke de db", pokemon);
       } catch (error) {
         next(error);
       }
@@ -32,6 +31,7 @@ pokemons.get("/", async (req, res, next) => {
     } else {
       //con 404 anda el search
       //con null anda el form
+      //Andan los dos :)
       res.send(null);
     }
   } else {
@@ -79,7 +79,7 @@ pokemons.get("/:id", async (req, res, next) => {
     }
   } else {
     try {
-      pokemon = await getPokemon(API, PokemonDetail, id);
+      let pokemon = await getPokemon(API, PokemonDetail, id);
       return res.json(pokemon);
     } catch (error) {
       next(error);
@@ -120,13 +120,6 @@ pokemons.post("/", async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-});
-pokemons.put("/", (req, res, next) => {
-  res.send("soy el put de /pokemons");
-});
-
-pokemons.delete("/", (req, res, next) => {
-  res.send("soy el delete de /pokemons");
 });
 
 module.exports = pokemons;

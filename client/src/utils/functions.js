@@ -46,4 +46,20 @@ export function sorterStrongest(a, b) {
     return -1;
   }
 }
+
+export const apiOrDB = (arr, value, empty) => {
+  let filtered;
+  if (value === "api") {
+    filtered = arr.filter((element) => typeof element.id === "number");
+  }
+  if (value === "DB") {
+    filtered = arr.filter((element) => element.id.length > 5);
+  }
+
+  if (value === "all") {
+    filtered = arr.filter((element) => element.id);
+  }
+
+  return filtered.length ? filtered : empty;
+};
 //__________________________________________________________________
