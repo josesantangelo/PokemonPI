@@ -38,7 +38,7 @@ export default function Search() {
   };
 
   return (
-    <div>
+    <div className="search_bar">
       <form onSubmit={onSubmit} className={s.formSearch}>
         <input
           type="text"
