@@ -59,7 +59,7 @@ const addTypes = async () => {
   }
 };
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     addTypes();
     console.log("%is listening at 3001"); // eslint-disable-line no-console
