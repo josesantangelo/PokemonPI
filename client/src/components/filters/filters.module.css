@@ -43,3 +43,15 @@
   background-color: rgba(0, 0, 0, 0.3);
   transition: all ease 0.5s;
 }
+
+@media (max-width: 768px) {
+  .pikaImg {
+    display: none;
+  }
+  .buttonClear {
+    width: 180px;
+  }
+  .container select {
+    height: 20px;
+  }
+}

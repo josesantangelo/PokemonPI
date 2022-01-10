@@ -9,7 +9,7 @@ export default function Paginado() {
   };
 
   return (
-    <div>
+    <div className={s.pagination}>
       {pages.length > 1
         ? pages.map((element) => {
             return (

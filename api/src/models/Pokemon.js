@@ -23,10 +23,6 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
 
-      // type: {
-      //   type: DataTypes.ARRAY(DataTypes.STRING),
-      // },
-
       hp: {
         type: DataTypes.INTEGER,
       },

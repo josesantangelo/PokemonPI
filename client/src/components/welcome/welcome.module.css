@@ -27,3 +27,18 @@
 .landing a:hover {
   font-weight: bolder;
 }
+
+@media (max-width: 500px) {
+  .landing {
+    background-image: url("../../utils/img/welcome_mobile.jpg");
+  }
+  .landing a {
+    margin: 0px 0px 200px 0px;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 700px) {
+  .landing {
+    background-image: url("../../utils/img/welcome_others.jpg");
+  }
+}

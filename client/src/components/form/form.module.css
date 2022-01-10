@@ -1,41 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
 .container {
-  height: 100vh;
-  /* background-color: white;
-  background: url("../../utils/img/bg_form.png"); */
+  /* height: 100vh; */
+  width: 100vw;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: right;
   display: grid;
   grid-template-areas:
-    "return"
-    "card";
-  grid-template-rows: 50px 1fr;
+    "formHeader"
+    "formMain";
+  grid-template-rows: 7% 1fr;
   grid-template-columns: 1fr;
 }
 
-.return {
-  grid-area: return;
+.formHeader {
+  grid-area: formHeader;
+  padding: 5px 0px 0px 5px;
   display: flex;
-  justify-content: flex-start;
+
   align-items: center;
-  padding-left: 10px;
+  justify-content: flex-start;
 }
 
-.return img {
+.formHeader img {
   width: 40px;
   height: 40px;
 }
 
-.card {
-  grid-area: card;
-  margin: 20px 300px;
-  border: 1px solid black;
-  border-radius: 10px;
+.formMain {
+  grid-area: formMain;
+  height: 100%;
+  width: 100vw;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+}
+
+.formContainer {
+  border: 1px solid black;
+  border-radius: 5px;
   background-color: rgb(213 213 213 / 50%);
+  width: 40vw;
+  max-width: 800px;
+}
+
+.formContainer form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.inputContainer {
+  height: 100%;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.submitButton {
+  height: max-content;
+  margin-bottom: 1%;
+}
+
+.inputGroup {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inputGroup label {
+  font-size: 100%;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.inputGroup span {
+  margin-top: 2px;
+  font-size: 70%;
+}
+
+.inputGroup input {
+  width: 50%;
+  justify-self: center;
+  align-self: center;
+}
+
+.inputGroup select {
+  width: 50%;
+  justify-self: center;
+  align-self: center;
 }
 
 .submitTrue {
@@ -51,60 +110,6 @@
   cursor: not-allowed;
   background: transparent;
   border-radius: 3px;
-}
-
-.form {
-  padding: 10px 10px 0px 10px;
-  margin-left: 70px;
-  width: 100%;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: flex-start;
-}
-
-.form input {
-  margin: 10px 0px;
-  height: 5%;
-  width: 40%;
-  font-family: "PokemonGb-RAeo";
-  border: 0.5px solid grey;
-  border-radius: 3px;
-  padding: 15px 8px;
-}
-
-.form select {
-  margin: 10px 0px;
-  /* height: 5%; */
-  width: 40%;
-  letter-spacing: 1px;
-  font-family: "PokemonGb-RAeo";
-  font-size: 15px;
-  border-radius: 3px;
-  height: 32px;
-  line-height: 32px;
-  border: 0.5px solid grey;
-}
-
-.form label {
-  margin-top: 5px;
-  font-size: 18px;
-  letter-spacing: 1px;
-  text-align: center;
-}
-
-.form span {
-  margin-bottom: 10px;
-  font-size: 10px;
-  font-weight: bolder;
-  color: red;
-  letter-spacing: 1px;
-}
-
-.form .notErrorSpan {
-  color: black;
 }
 
 .ldsRing {
@@ -140,5 +145,67 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .inputContainer {
+    margin-top: 5px;
+    height: 90%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .submitButton {
+    height: auto;
+  }
+  .inputGroup {
+    width: 95%;
+    /* height: 8.5%; */
+    margin-bottom: 15px;
+  }
+  .inputGroup input {
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+  }
+  .inputGroup select {
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+  }
+  .formContainer {
+    width: 90%;
+  }
+}
+
+@media (min-width: 769px) {
+  .inputContainer {
+    margin-top: 5px;
+    height: 90%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .submitButton {
+    height: auto;
+  }
+  .inputGroup {
+    width: 45%;
+    margin-bottom: 15px;
+  }
+  .inputGroup input {
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+  }
+  .inputGroup select {
+    width: 90%;
+    height: 30px;
+    line-height: 30px;
+  }
+  .formContainer {
+    width: 90%;
   }
 }

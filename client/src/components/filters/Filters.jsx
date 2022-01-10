@@ -192,7 +192,7 @@ export default function Filters() {
       >
         Limpiar filtros
       </button>
-      <img src={pika} alt="pikachu" />
+      <img className={s.pikaImg} src={pika} alt="pikachu" />
     </>
   );
 }

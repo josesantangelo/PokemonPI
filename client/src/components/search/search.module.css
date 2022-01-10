@@ -34,3 +34,23 @@
     justify-content: center;
   }
 }
+
+@media (max-width: 424px) {
+  .input {
+    width: 180px;
+    margin-left: 45px;
+  }
+  .formSearch {
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 425px) and (max-width: 768px) {
+  .input {
+    width: 180px;
+    margin-left: 45px;
+  }
+  .formSearch {
+    margin-top: 5px;
+  }
+}

@@ -6,9 +6,8 @@ import {
   getPokemonsOrigin,
   setSelectedPage,
 } from "../../store/actions/actions";
-
+import noPoke from "../../utils/img/noPokemon.png";
 import s from "./asydeTypes.module.css";
-
 import { alphabeticOrder } from "../../utils/functions.js";
 export default function Pokemons() {
   let types = useSelector((state) => state.types);
@@ -25,7 +24,7 @@ export default function Pokemons() {
       name: `El equipo Rocket estuvo aqui!`,
       types: [],
       id: "",
-      img: "https://www.pngarea.com/pngm/70/6557847_rocket-league-ball-png-team-rocket-pokemon-logo.png",
+      img: noPoke,
     },
   ];
 
