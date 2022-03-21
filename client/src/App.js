@@ -16,7 +16,7 @@ import Search from "./components/search/Search";
 import Paginado from "./components/paginado/Paginado";
 import Filters from "./components/filters/Filters";
 import AsydeTypes from "./components/asideTypes/AsydeTypes.jsx";
-import { useState } from "react";
+
 
 function App() {
   return (
