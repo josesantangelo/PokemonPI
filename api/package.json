@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L",
+    "start": "node api/index.js",
     "test": "jest --watchAll --testTimeout=10000"
   },
   "author": "Henry",
