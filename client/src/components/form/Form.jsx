@@ -46,7 +46,7 @@ const Form = () => {
     } else {
       try {
         await axios
-          .post("http://localhost:3001/pokemons", form)
+          .post("/pokemons", form)
           .then(alert("exito!"))
           .then(history.push("/home"));
       } catch (error) {
@@ -81,7 +81,7 @@ const Form = () => {
 
   const checkName = async (value) => {
     let poke = await axios.get(
-      `http://localhost:3001/pokemons?name=${value.toLowerCase()}`
+      `/pokemons?name=${value.toLowerCase()}`
     );
     let name = poke.data.name;
 
@@ -134,7 +134,7 @@ const Form = () => {
                   <span>* Campo obligatorio</span>
                 ) : null}
                 {form.name.length &&
-                (error.name.includes("existe") || !error.name) ? (
+                  (error.name.includes("existe") || !error.name) ? (
                   <span className={s.notErrorSpan}>Ok</span>
                 ) : null}
               </div>
@@ -190,7 +190,7 @@ const Form = () => {
                   name="img"
                   onChange={onChange}
                   autoComplete="off"
-                  // value={form.img}
+                // value={form.img}
                 />
                 {form.img === defaultImage ? (
                   <span className={s.notErrorSpan}>Default image</span>
@@ -311,20 +311,20 @@ const Form = () => {
               {!loading && (
                 <div className={s.submitTrue}>
                   {form.name !== "" &&
-                  form.type1 &&
-                  form.type1 !== form.type2 &&
-                  form.hp > 0 &&
-                  form.attack > 0 &&
-                  form.defense > 0 &&
-                  form.speed > 0 &&
-                  form.height > 0 &&
-                  form.weight > 0 &&
-                  form.hp <= 100 &&
-                  form.attack <= 100 &&
-                  form.defense <= 100 &&
-                  form.speed <= 100 &&
-                  form.height <= 100 &&
-                  form.weight <= 100 ? (
+                    form.type1 &&
+                    form.type1 !== form.type2 &&
+                    form.hp > 0 &&
+                    form.attack > 0 &&
+                    form.defense > 0 &&
+                    form.speed > 0 &&
+                    form.height > 0 &&
+                    form.weight > 0 &&
+                    form.hp <= 100 &&
+                    form.attack <= 100 &&
+                    form.defense <= 100 &&
+                    form.speed <= 100 &&
+                    form.height <= 100 &&
+                    form.weight <= 100 ? (
                     <input
                       className={s.submitTrue}
                       type="submit"

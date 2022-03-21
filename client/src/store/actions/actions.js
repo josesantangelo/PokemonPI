@@ -13,7 +13,7 @@ import axios from "axios";
 
 export function getPokemonsOriginal() {
   return async function (dispatch) {
-    let pokemonsOriginal = await axios.get("http://localhost:3001/pokemons");
+    let pokemonsOriginal = await axios.get("/pokemons");
     try {
       dispatch({
         type: GET_POKEMONSORIGINAL,
@@ -56,7 +56,7 @@ export function setPages(value) {
 
 export function getTypes() {
   return async function (dispatch) {
-    let types = await axios.get("http://localhost:3001/types");
+    let types = await axios.get("/types");
     try {
       dispatch({
         type: GET_TYPES,
@@ -74,7 +74,7 @@ export function getExactPokemon(value) {
       console.log("value", value);
       let arr = [];
       let exactPokemons = await axios.get(
-        `http://localhost:3001/pokemons?name=${value}`
+        `/pokemons?name=${value}`
       );
       console.log("data", exactPokemons.data);
       if (exactPokemons.data) {
@@ -134,7 +134,7 @@ export function detailedPokemon(value) {
         payload: value,
       });
     } else {
-      let detailed = await axios.get(`http://localhost:3001/pokemons/${value}`);
+      let detailed = await axios.get(`/pokemons/${value}`);
 
       try {
         if (detailed.data) {
