@@ -60,7 +60,7 @@ const addTypes = async () => {
 };
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT || 3001, () => {
+  server.listen(process.env.PORT || 3001, '0.0.0.0', () => {
     addTypes();
     console.log(`%is listening at ${process.env.PORT ? process.env.PORT : "3001"}`); // eslint-disable-line no-console
   });
