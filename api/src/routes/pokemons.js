@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { Axios, default: axios } = require("../../../client/node_modules/axios");
+// const { Axios, default: axios } = require("../../../client/node_modules/axios");
+const { Axios, default: axios } = require('axios')
 const { Pokemon, Type } = require("../db.js");
 const { API } = require("../utils/constants.js");
 const { PokemonDetail, PokemonItem } = require("../utils/classes.js");

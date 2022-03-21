@@ -1,4 +1,5 @@
-const { Axios, default: axios } = require("../../../client/node_modules/axios");
+// const { Axios, default: axios } = require("../../../client/node_modules/axios");
+const { Axios, default: axios } = require('axios')
 const { Pokemon } = require("../db.js");
 
 const getPokemon = async (path, creator, tag = "") => {
